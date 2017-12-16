@@ -5,3 +5,4 @@ pom.properties
 .classpath
 .settings/
 .project
+log_steps.txt
