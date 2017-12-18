@@ -1,8 +1,5 @@
 package by.htp.itacademy.car.service.impl;
 
-import java.util.Map;
-
-import by.htp.itacademy.car.domain.entity.Entity;
 import by.htp.itacademy.car.service.EntityService;
 import by.htp.itacademy.car.service.exception.ServiceException;
 
