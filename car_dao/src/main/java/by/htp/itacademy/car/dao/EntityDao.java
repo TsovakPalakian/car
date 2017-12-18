@@ -1,5 +1,11 @@
 package by.htp.itacademy.car.dao;
 
+/**
+ * The user of the interface has control over the database.
+ * 
+ * @author Tsovak Palakian
+*/
+
 import java.util.Map;
 
 import by.htp.itacademy.car.dao.exception.DaoException;

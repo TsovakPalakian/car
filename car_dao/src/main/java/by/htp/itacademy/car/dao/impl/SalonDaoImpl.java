@@ -6,16 +6,16 @@ import by.htp.itacademy.car.dao.EntityDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.domain.entity.Entity;
 
-public class OrderDaoImpl implements EntityDao {
+public class SalonDaoImpl implements EntityDao {
 
-	private OrderDaoImpl() {
+	private SalonDaoImpl() {
 	}
 
 	private static class Singletone {
-		private static final OrderDaoImpl INSTANCE = new OrderDaoImpl();
+		private static final SalonDaoImpl INSTANCE = new SalonDaoImpl();
 	}
 
-	public static OrderDaoImpl getInstance() {
+	public static SalonDaoImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
 	
