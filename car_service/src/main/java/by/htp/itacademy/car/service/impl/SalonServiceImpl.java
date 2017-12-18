@@ -1,9 +1,9 @@
-package by.htp.itacademy.car.car_service.impl;
+package by.htp.itacademy.car.service.impl;
 
 import java.util.Map;
 
-import by.htp.itacademy.car.car_domain.entity.Entity;
-import by.htp.itacademy.car.car_service.EntityService;
+import by.htp.itacademy.car.domain.entity.Entity;
+import by.htp.itacademy.car.service.EntityService;
 
 public class SalonServiceImpl implements EntityService {
 

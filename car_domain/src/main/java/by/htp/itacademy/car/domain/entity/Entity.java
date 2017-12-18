@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.car_domain.entity;
+package by.htp.itacademy.car.domain.entity;
 
 /**
  * This interface is a marker interface.

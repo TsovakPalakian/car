@@ -1,8 +1,8 @@
-package by.htp.itacademy.car.car_service;
+package by.htp.itacademy.car.service;
 
 import java.util.Map;
 
-import by.htp.itacademy.car.car_domain.entity.Entity;
+import by.htp.itacademy.car.domain.entity.Entity;
 
 /**
  * This is the service interface. The user of the interface has control over the database.

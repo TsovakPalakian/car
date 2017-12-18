@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.car_domain.entity;
+package by.htp.itacademy.car.domain.entity;
 
 import java.io.Serializable;
 import java.util.Date;
