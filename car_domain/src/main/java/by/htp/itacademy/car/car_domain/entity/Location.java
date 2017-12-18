@@ -16,4 +16,5 @@ public class Location implements Entity, Serializable {
 	private Long idLocation;
 	private String address;
 	private String link;
+	
 }
