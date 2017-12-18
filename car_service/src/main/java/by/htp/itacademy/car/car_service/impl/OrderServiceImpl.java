@@ -5,11 +5,22 @@ import java.util.Map;
 import by.htp.itacademy.car.car_domain.entity.Entity;
 import by.htp.itacademy.car.car_service.EntityService;
 
-public class LocationService implements EntityService {
+public class OrderServiceImpl implements EntityService {
 
+	private OrderServiceImpl() {
+	}
+
+	private static class Singletone {
+		private static final OrderServiceImpl INSTANCE = new OrderServiceImpl();
+	}
+
+	public static OrderServiceImpl getInstance() {
+		return Singletone.INSTANCE;
+	}
+	
 	@Override
 	public void insert(Entity entity) {
-		
+
 	}
 
 	@Override
@@ -19,12 +30,12 @@ public class LocationService implements EntityService {
 
 	@Override
 	public void update(Entity entity) {
-		
+
 	}
 
 	@Override
 	public void delete(Entity entity) {
-		
+
 	}
 
 }
