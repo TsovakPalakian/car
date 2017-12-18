@@ -4,6 +4,7 @@ import java.util.Map;
 
 import by.htp.itacademy.car.domain.entity.Entity;
 import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.exception.ServiceException;
 
 public class UserServiceImpl implements EntityService {
 
@@ -17,25 +18,25 @@ public class UserServiceImpl implements EntityService {
 	public static UserServiceImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
-	
-	@Override
-	public void insert(Entity entity) {
 
+	@Override
+	public void insert(Entity entity) throws ServiceException {
+		
 	}
 
 	@Override
-	public Map<Long, Entity> select(String query) {
+	public Map<Long, Entity> select(String query) throws ServiceException {
 		return null;
 	}
 
 	@Override
-	public void update(Entity entity) {
-
+	public void update(Entity entity) throws ServiceException {
+		
 	}
 
 	@Override
-	public void delete(Entity entity) {
-
+	public void delete(Entity entity) throws ServiceException {
+		
 	}
 
 }

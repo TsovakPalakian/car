@@ -4,6 +4,7 @@ import java.util.Map;
 
 import by.htp.itacademy.car.domain.entity.Entity;
 import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.exception.ServiceException;
 
 public class OrderServiceImpl implements EntityService {
 
@@ -14,22 +15,22 @@ public class OrderServiceImpl implements EntityService {
 		private static final OrderServiceImpl INSTANCE = new OrderServiceImpl();
 	}
 
-	public static OrderServiceImpl getInstance() {
+	public static OrderServiceImpl getInstance() throws ServiceException {
 		return Singletone.INSTANCE;
 	}
 	
 	@Override
-	public void insert(Entity entity) {
+	public void insert(Entity entity) throws ServiceException {
 
 	}
 
 	@Override
-	public Map<Long, Entity> select(String query) {
+	public Map<Long, Entity> select(String query) throws ServiceException {
 		return null;
 	}
 
 	@Override
-	public void update(Entity entity) {
+	public void update(Entity entity) throws ServiceException {
 
 	}
 
