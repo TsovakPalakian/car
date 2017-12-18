@@ -18,25 +18,5 @@ public class AccessoryServiceImpl implements EntityService {
 	public static AccessoryServiceImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
-	
-	@Override
-	public void insert(Entity entity) throws ServiceException {
-		
-	}
-
-	@Override
-	public Map<Long, Entity> select(String query) throws ServiceException {
-		return null;
-	}
-
-	@Override
-	public void update(Entity entity) throws ServiceException {
-		
-	}
-
-	@Override
-	public void delete(Entity entity) throws ServiceException {
-		
-	}
 
 }
