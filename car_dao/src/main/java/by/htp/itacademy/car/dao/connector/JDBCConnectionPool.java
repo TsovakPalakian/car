@@ -6,14 +6,11 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
+
 public final class JDBCConnectionPool extends AbstractConnectionPool implements IConnection {
 
-	private String url;
-	private String login;
-	private String password;
-
 	private JDBCConnectionPool() {
-		
 		fillingConnectionPool();
 	}
 
@@ -25,18 +22,8 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 		return Singleton.INSTANCE;
 	}
 
-	public void fillingConnectionPool() {
-		for (int i = connections.size(); i < this.size; i++) {
-			try {
-				connections.put(DriverManager.getConnection(url, login, password), false);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public final Connection getConnection() {
-		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
+		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
 			if (!iter.getValue()) {
 				connections.replace(iter.getKey(), true);
 				numberOfConnection++;

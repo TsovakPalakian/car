@@ -13,5 +13,5 @@ public final class ResourceParameter {
 	protected final static Integer CONNECTION_POOL_INITIAL_SIZE = 10; 
 	protected final static Integer INITIAL_NUMBER_OF_CONNECTIONS_USED = 0;
 
-	protected final static ConcurrentHashMap<Connection, Boolean> connections = new ConcurrentHashMap<Connection, Boolean>();
+	protected final static ConcurrentHashMap<Connection, Boolean> CONNECTIONS = new ConcurrentHashMap<Connection, Boolean>();
 }
