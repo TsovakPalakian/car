@@ -6,55 +6,23 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class ConnectionPool {
-	
-	private final static String RESOURCE_BUNDLE_PARAMETER_CONFIG = "config";
-	private final static String RESOURCE_BUNDLE_PARAMETER_URL = "db.url";
-	private final static String RESOURCE_BUNDLE_PARAMETER_LOGIN = "db.login";
-	private final static String RESOURCE_BUNDLE_PARAMETER_PASSWORD = "db.pass";
-	private final static String RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME = "db.driver.name";
-	
-	private final static Integer CONNECTION_POOL_INITIAL_SIZE = 10; 
-	private final static Integer INITIAL_NUMBER_OF_CONNECTIONS_USED = 0;
-
-	private final ConcurrentHashMap<Connection, Boolean> connections;
-	private int size;
-	private int numberOfConnection;
+public final class JDBCConnectionPool extends AbstractConnectionPool implements IConnection {
 
 	private String url;
 	private String login;
 	private String password;
 
-	private ConnectionPool() {
-		this.size = CONNECTION_POOL_INITIAL_SIZE;
-		this.numberOfConnection = INITIAL_NUMBER_OF_CONNECTIONS_USED;
-		connections = new ConcurrentHashMap<Connection, Boolean>();
-		initResource();
+	private JDBCConnectionPool() {
+		
 		fillingConnectionPool();
 	}
 
 	private static class Singleton {
-		private static final ConnectionPool INSTANCE = new ConnectionPool();
+		private static final JDBCConnectionPool INSTANCE = new JDBCConnectionPool();
 	}
 
-	public static ConnectionPool getInstance() {
+	public static JDBCConnectionPool getInstance() {
 		return Singleton.INSTANCE;
-	}
-
-	private void initResource() {
-		ResourceBundle rb = ResourceBundle.getBundle(RESOURCE_BUNDLE_PARAMETER_CONFIG);
-
-		url = rb.getString(RESOURCE_BUNDLE_PARAMETER_URL);
-		login = rb.getString(RESOURCE_BUNDLE_PARAMETER_LOGIN);
-		password = rb.getString(RESOURCE_BUNDLE_PARAMETER_PASSWORD);
-
-		String driver = rb.getString(RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME);
-
-		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void fillingConnectionPool() {
