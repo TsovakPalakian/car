@@ -1,25 +1,26 @@
 package by.htp.itacademy.car.dao.connector;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class AbstractConnectionPool {
 	
 	private String url;
 	private String login;
 	private String password;
-	
-	protected void initResource() {
-		ResourceBundle rb = ResourceBundle.getBundle(RESOURCE_BUNDLE_PARAMETER_CONFIG);
 
-		url = rb.getString(RESOURCE_BUNDLE_PARAMETER_URL);
-		login = rb.getString(RESOURCE_BUNDLE_PARAMETER_LOGIN);
-		password = rb.getString(RESOURCE_BUNDLE_PARAMETER_PASSWORD);
+	protected void initResource(String config, String urlParam, String loginParam, 
+			String passwordParam, String driverNameParam) {
+		ResourceBundle rb = ResourceBundle.getBundle(config);
 
-		String driver = rb.getString(RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME);
+		url = rb.getString(url);
+		login = rb.getString(login);
+		password = rb.getString(password);
+
+		String driver = rb.getString(driverNameParam);
 
 		try {
 			Class.forName(driver);
@@ -28,10 +29,11 @@ public abstract class AbstractConnectionPool {
 		}
 	}
 	
-	protected void fillingConnectionPool() {
-		for (int i = CONNECTIONS.size(); i < this.size; i++) {
+	protected void fillingConnectionPool(ConcurrentHashMap<Connection, Boolean> connPool, Long size) {
+		
+		for (int i = connPool.size(); i < size; i++) {
 			try {
-				CONNECTIONS.put(DriverManager.getConnection(url, login, password), false);
+				connPool.put(DriverManager.getConnection(url, login, password), false);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

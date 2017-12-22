@@ -10,10 +10,15 @@ import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
 
 public final class JDBCConnectionPool extends AbstractConnectionPool implements IConnection {
 
+	private Long connectionPoolSize = CONNECTION_POOL_INITIAL_SIZE;
+	
 	private final static ConcurrentHashMap<Connection, Boolean> CONNECTIONS = new ConcurrentHashMap<Connection, Boolean>();
 	
 	private JDBCConnectionPool() {
-		fillingConnectionPool();
+		initResource(RESOURCE_BUNDLE_PARAMETER_CONFIG, RESOURCE_BUNDLE_PARAMETER_URL, RESOURCE_BUNDLE_PARAMETER_LOGIN, 
+				RESOURCE_BUNDLE_PARAMETER_PASSWORD, RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME);
+		
+		fillingConnectionPool(CONNECTIONS, CONNECTION_POOL_INITIAL_SIZE);
 	}
 
 	private static class Singleton {
