@@ -1,8 +1,9 @@
 package by.htp.itacademy.car.service.impl;
 
-import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.RentedCarService;
+import by.htp.itacademy.car.service.exception.ServiceException;
 
-public class RentedCarServiceImpl implements EntityService {
+public class RentedCarServiceImpl implements RentedCarService {
 
 	private RentedCarServiceImpl() {
 	}
@@ -11,7 +12,7 @@ public class RentedCarServiceImpl implements EntityService {
 		private static final RentedCarServiceImpl INSTANCE = new RentedCarServiceImpl();
 	}
 
-	public static RentedCarServiceImpl getInstance() {
+	public static RentedCarServiceImpl getInstance() throws ServiceException {
 		return Singletone.INSTANCE;
 	}
 	

@@ -1,8 +1,9 @@
 package by.htp.itacademy.car.service.impl;
 
-import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.LocationService;
+import by.htp.itacademy.car.service.exception.ServiceException;
 
-public class LocationServiceImpl implements EntityService {
+public class LocationServiceImpl implements LocationService {
 
 	private LocationServiceImpl() {
 	}
@@ -11,7 +12,7 @@ public class LocationServiceImpl implements EntityService {
 		private static final LocationServiceImpl INSTANCE = new LocationServiceImpl();
 	}
 
-	public static LocationServiceImpl getInstance() {
+	public static LocationServiceImpl getInstance() throws ServiceException {
 		return Singletone.INSTANCE;
 	}
 

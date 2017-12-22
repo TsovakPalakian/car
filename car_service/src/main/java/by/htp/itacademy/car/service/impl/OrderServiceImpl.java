@@ -1,9 +1,9 @@
 package by.htp.itacademy.car.service.impl;
 
-import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.OrderService;
 import by.htp.itacademy.car.service.exception.ServiceException;
 
-public class OrderServiceImpl implements EntityService {
+public class OrderServiceImpl implements OrderService {
 
 	private OrderServiceImpl() {
 	}

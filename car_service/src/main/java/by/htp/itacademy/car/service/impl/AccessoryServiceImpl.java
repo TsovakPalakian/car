@@ -1,8 +1,9 @@
 package by.htp.itacademy.car.service.impl;
 
-import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.AccessoryService;
+import by.htp.itacademy.car.service.exception.ServiceException;
 
-public class AccessoryServiceImpl implements EntityService {
+public class AccessoryServiceImpl implements AccessoryService {
 
 	private AccessoryServiceImpl() {
 	}
@@ -11,7 +12,7 @@ public class AccessoryServiceImpl implements EntityService {
 		private static final AccessoryServiceImpl INSTANCE = new AccessoryServiceImpl();
 	}
 
-	public static AccessoryServiceImpl getInstance() {
+	public static AccessoryServiceImpl getInstance() throws ServiceException {
 		return Singletone.INSTANCE;
 	}
 
