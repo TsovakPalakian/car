@@ -38,7 +38,7 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 
 	@Override
 	public final Connection getConnection() throws DatabaseConnectionException {
-		return getAbstractConnection(CONNECTIONS, connectionPoolSize, numberOfConnectionsUsed);
+		return getConnectionAbstract(CONNECTIONS, connectionPoolSize, numberOfConnectionsUsed);
 	}
 	
 	@Override

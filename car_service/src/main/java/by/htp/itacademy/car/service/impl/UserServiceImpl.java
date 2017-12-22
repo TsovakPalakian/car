@@ -1,8 +1,9 @@
 package by.htp.itacademy.car.service.impl;
 
-import by.htp.itacademy.car.service.EntityService;
+import by.htp.itacademy.car.service.UserService;
+import by.htp.itacademy.car.service.exception.ServiceException;
 
-public class UserServiceImpl implements EntityService {
+public class UserServiceImpl implements UserService {
 
 	private UserServiceImpl() {
 	}
@@ -11,7 +12,7 @@ public class UserServiceImpl implements EntityService {
 		private static final UserServiceImpl INSTANCE = new UserServiceImpl();
 	}
 
-	public static UserServiceImpl getInstance() {
+	public static UserServiceImpl getInstance() throws ServiceException {
 		return Singletone.INSTANCE;
 	}
 
