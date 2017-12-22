@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 
+import by.htp.connector.AbstractConnectionPool;
+import by.htp.connector.DatabaseConnectionException;
+import by.htp.connector.IConnection;
+
 import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
 
 public final class JDBCConnectionPool extends AbstractConnectionPool implements IConnection {
@@ -14,10 +18,15 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 	private final static ConcurrentHashMap<Connection, Boolean> CONNECTIONS = new ConcurrentHashMap<Connection, Boolean>();
 	
 	private JDBCConnectionPool() {
-		initResource(JDBC_RESOURCE_BUNDLE_PARAMETER_CONFIG, JDBC_RESOURCE_BUNDLE_PARAMETER_URL, JDBC_RESOURCE_BUNDLE_PARAMETER_LOGIN, 
-				JDBC_RESOURCE_BUNDLE_PARAMETER_PASSWORD, JDBC_RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME);
-		
-		fillingConnectionPool(CONNECTIONS, CONNECTION_POOL_INITIAL_SIZE);
+		try {
+			initResource(JDBC_RESOURCE_BUNDLE_PARAMETER_CONFIG, JDBC_RESOURCE_BUNDLE_PARAMETER_URL, 
+					JDBC_RESOURCE_BUNDLE_PARAMETER_LOGIN, JDBC_RESOURCE_BUNDLE_PARAMETER_PASSWORD, 
+					JDBC_RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME);
+			
+			fillingConnectionPool(CONNECTIONS, CONNECTION_POOL_INITIAL_SIZE);
+		} catch (DatabaseConnectionException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static class Singleton {
@@ -29,7 +38,7 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 	}
 
 	@Override
-	public final Connection getConnection() {
+	public final Connection getConnection() throws DatabaseConnectionException {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
 			if (!iter.getValue()) {
 				CONNECTIONS.replace(iter.getKey(), true);
@@ -37,15 +46,19 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 				return iter.getKey();
 			} else if (numberOfConnectionsUsed == connectionPoolSize) {
 				connectionPoolSize += 10;
-				fillingConnectionPool(CONNECTIONS, connectionPoolSize);
+				try {
+					fillingConnectionPool(CONNECTIONS, connectionPoolSize);
+				} catch (DatabaseConnectionException e) {
+					e.printStackTrace();
+				}
 				getConnection();
 			}
 		}
 		return null;
 	}
-
+	
 	@Override
-	public final boolean putBack(Connection connection) {
+	public boolean putBack(Connection connection) throws DatabaseConnectionException {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
 			if (iter.getKey() == connection) {
 				CONNECTIONS.replace(iter.getKey(), false);
@@ -57,7 +70,7 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 	}
 
 	@Override
-	public final boolean close() {
+	public final boolean close() throws DatabaseConnectionException {
 		boolean error = false;
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
 			try {
