@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 public interface IConnection {
 	
-	Connection getConnection();
+	Connection getConnection() throws DatabaseConnectionException;
 	
-	boolean putBack(Connection connection);
+	boolean putBack(Connection connection) throws DatabaseConnectionException;
 	
-	boolean close();
+	boolean close() throws DatabaseConnectionException;
 	
 }

@@ -12,13 +12,13 @@ public abstract class AbstractConnectionPool {
 	private String login;
 	private String password;
 
-	protected void initResource(String config, String urlParam, String loginParam, 
-			String passwordParam, String driverNameParam) {
-		ResourceBundle rb = ResourceBundle.getBundle(config);
+	protected void initResource(String configFileName, String urlParam, String loginParam, 
+			String passwordParam, String driverNameParam) throws DatabaseConnectionException {
+		ResourceBundle rb = ResourceBundle.getBundle(configFileName);
 
-		url = rb.getString(url);
-		login = rb.getString(login);
-		password = rb.getString(password);
+		url = rb.getString(urlParam);
+		login = rb.getString(loginParam);
+		password = rb.getString(passwordParam);
 
 		String driver = rb.getString(driverNameParam);
 
@@ -29,7 +29,7 @@ public abstract class AbstractConnectionPool {
 		}
 	}
 	
-	protected void fillingConnectionPool(ConcurrentHashMap<Connection, Boolean> connPool, Long size) {
+	protected void fillingConnectionPool(ConcurrentHashMap<Connection, Boolean> connPool, Long size) throws DatabaseConnectionException {
 		
 		for (int i = connPool.size(); i < size; i++) {
 			try {
