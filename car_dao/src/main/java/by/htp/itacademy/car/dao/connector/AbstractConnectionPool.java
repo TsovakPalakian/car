@@ -13,7 +13,11 @@ public abstract class AbstractConnectionPool {
 	private String password;
 
 	protected void initResource(String configFileName, String urlParam, String loginParam, 
-			String passwordParam, String driverNameParam) throws DatabaseConnectionException {
+			String passwordParam, String driverNameParam) 
+					throws DatabaseConnectionException {
+		if (configFileName == null) {
+			throw new DatabaseConnectionException("The configuration file name can not be null");
+		}
 		ResourceBundle rb = ResourceBundle.getBundle(configFileName);
 
 		url = rb.getString(urlParam);
