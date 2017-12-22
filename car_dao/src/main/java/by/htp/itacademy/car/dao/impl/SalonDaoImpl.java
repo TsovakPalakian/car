@@ -1,5 +1,7 @@
 package by.htp.itacademy.car.dao.impl;
 
+import java.util.Map;
+
 import by.htp.itacademy.car.dao.EntityDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.domain.entity.Entity;
@@ -18,22 +20,25 @@ public class SalonDaoImpl implements EntityDao {
 	}
 	
 	@Override
-	public Entity select(String query) throws DaoException {
+	public Map<Long, Entity> select(Entity entity) throws DaoException {
 		return null;
 	}
 
 	@Override
-	public void insert(Entity entity) throws DaoException {
+	public boolean insert(Entity entity) throws DaoException {
+		return false;
 
 	}
 
 	@Override
-	public void update(Entity entity) throws DaoException {
+	public boolean update(Entity entity) throws DaoException {
+		return false;
 
 	}
 
 	@Override
-	public void delete(Entity entity) throws DaoException {
+	public boolean delete(Entity entity) throws DaoException {
+		return false;
 
 	}
 

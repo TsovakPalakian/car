@@ -1,5 +1,7 @@
 package by.htp.itacademy.car.dao;
 
+import java.util.Map;
+
 /**
  * The user of the interface has control over the database.
  * 
@@ -11,7 +13,7 @@ import by.htp.itacademy.car.domain.entity.Entity;
 
 public interface EntityDao {
 	
-	Entity select(String query) throws DaoException;
+	Map<Long, Entity> select(Entity entity) throws DaoException;
 	
 	boolean insert(Entity entity) throws DaoException;
 	
