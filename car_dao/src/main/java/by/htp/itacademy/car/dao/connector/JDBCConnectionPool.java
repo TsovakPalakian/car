@@ -10,6 +10,8 @@ import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
 
 public final class JDBCConnectionPool extends AbstractConnectionPool implements IConnection {
 
+	private final static ConcurrentHashMap<Connection, Boolean> CONNECTIONS = new ConcurrentHashMap<Connection, Boolean>();
+	
 	private JDBCConnectionPool() {
 		fillingConnectionPool();
 	}
@@ -25,7 +27,7 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 	public final Connection getConnection() {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
 			if (!iter.getValue()) {
-				connections.replace(iter.getKey(), true);
+				CONNECTIONS.replace(iter.getKey(), true);
 				numberOfConnection++;
 				return iter.getKey();
 			} else if (numberOfConnection == size) {
