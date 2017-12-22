@@ -13,10 +13,10 @@ public interface EntityDao {
 	
 	Entity select(String query) throws DaoException;
 	
-	void insert(Entity entity) throws DaoException;
+	boolean insert(Entity entity) throws DaoException;
 	
-	void update(Entity entity) throws DaoException;
+	boolean update(Entity entity) throws DaoException;
 	
-	void delete(Entity entity) throws DaoException;
+	boolean delete(Entity entity) throws DaoException;
 	
 }
