@@ -1,7 +1,6 @@
 package by.htp.itacademy.car.dao.connector;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 
 import by.htp.connector.AbstractConnectionPool;
@@ -39,47 +38,18 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 
 	@Override
 	public final Connection getConnection() throws DatabaseConnectionException {
-		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
-			if (!iter.getValue()) {
-				CONNECTIONS.replace(iter.getKey(), true);
-				numberOfConnectionsUsed++;
-				return iter.getKey();
-			} else if (numberOfConnectionsUsed == connectionPoolSize) {
-				connectionPoolSize += 10;
-				try {
-					fillingConnectionPool(CONNECTIONS, connectionPoolSize);
-				} catch (DatabaseConnectionException e) {
-					e.printStackTrace();
-				}
-				getConnection();
-			}
-		}
+		getAbstractConnection(CONNECTIONS, connectionPoolSize, numberOfConnectionsUsed);
 		return null;
 	}
 	
 	@Override
 	public boolean putBack(Connection connection) throws DatabaseConnectionException {
-		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
-			if (iter.getKey() == connection) {
-				CONNECTIONS.replace(iter.getKey(), false);
-				numberOfConnectionsUsed--;
-				return true;
-			}
-		}
-		return false;
+		return putBackAbstract(connection, CONNECTIONS, numberOfConnectionsUsed);
 	}
 
 	@Override
 	public final boolean close() throws DatabaseConnectionException {
-		boolean error = false;
-		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : CONNECTIONS.entrySet()) {
-			try {
-				iter.getKey().close();
-			} catch (SQLException e) {
-				error = true;
-			}
-		}
-		return !error;
+		return closeAbstract(CONNECTIONS);
 	}
 }
 
