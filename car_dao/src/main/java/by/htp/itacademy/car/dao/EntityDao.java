@@ -21,4 +21,5 @@ public interface EntityDao {
 	
 	boolean delete(Entity entity) throws DaoException;
 	
+	
 }
