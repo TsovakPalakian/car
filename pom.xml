@@ -19,8 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junitVersion>3.8.1</junitVersion>
-		<servlet.api.version>3.1.0</servlet.api.version>
-		<jsp.version>2.1</jsp.version>
+		<servlet.api.version>3.0.1</servlet.api.version>
+		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
 		<lombokVersion>1.16.18</lombokVersion>
 		<log4j.version>1.2.17</log4j.version>

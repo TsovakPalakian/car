@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div id="foot">
-			<jsp:include page="/jspf/footer.jspf" />
+			<jsp:include page="../jspf/footer.jspf" />
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/slider.js"
