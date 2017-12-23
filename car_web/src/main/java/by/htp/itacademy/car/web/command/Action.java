@@ -2,12 +2,12 @@ package by.htp.itacademy.car.web.command;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.dao.connector.ResourceParameter;
+import by.htp.itacademy.car.web.util.ResponseParameter;
 
 public interface Action {
 	/**
 	 *
 	 */
-	ResourceParameter execute(HttpServletRequest request);
+	ResponseParameter execute(HttpServletRequest request);
 	
 }

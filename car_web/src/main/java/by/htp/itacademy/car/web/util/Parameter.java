@@ -4,5 +4,5 @@ public final class Parameter {
 	
 	private Parameter() {}
 	
-	private static final String REQUEST_PARAMETER_ACTION = "command";
+	public static final String REQUEST_PARAMETER_ACTION = "command";
 }
