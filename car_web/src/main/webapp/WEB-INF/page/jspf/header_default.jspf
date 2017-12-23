@@ -1,7 +1,7 @@
 <header>
 	<div>
-		<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
-			<img src="${pageContext.request.contextPath}/image/logoF.png" width="180">
+		<a href="/WEB-INF/page/jsp/home_page.jsp">
+			<img src="web/image/logoF.png" width="180">
 		</a>
 
 		<c:if test="${user == null}">
