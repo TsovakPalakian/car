@@ -22,6 +22,6 @@ public class SignUpPageAction implements Action {
 	
 	@Override
 	public ResponseParameter execute(HttpServletRequest request, HttpServletResponse response) {
-		return null;
+		return new ResponseParameter("/WEB-INF/page/jsp/sign_up_page.jsp", false);
 	}
 }

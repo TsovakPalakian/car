@@ -7,9 +7,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link href="${pageContext.request.contextPath}/css/signup.css" rel="stylesheet" type="text/css" />
-	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
-	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="web/css/signup.css" rel="stylesheet" type="text/css" />
+	<link href="web/css/menu.css" rel="stylesheet" type="text/css" />
+	<link href="web/css/footer.css" rel="stylesheet" type="text/css" />
 	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Sign up</title>
 </head>
