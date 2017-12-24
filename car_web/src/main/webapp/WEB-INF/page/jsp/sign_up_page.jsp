@@ -16,11 +16,11 @@
 <body>
 	<div>
 		<div id="wrapper">
-			<%@include file="../jspf/header_sign_up.jspf" %>
+			<%@include file="/WEB-INF/page//jspf/header_sign_up.jspf" %>
 			<hr>
 			
 			<div class="menu_center">
-				<%@include file="../jspf/menu.jspf" %>
+				<%@include file="/WEB-INF/page//jspf/menu.jspf" %>
 			</div>
 			
 			<hr>
@@ -153,7 +153,7 @@
 		</div>
 		
 		<div id="foot">
-			<jsp:include page="../jspf/footer.jspf" />
+			<jsp:include page="/WEB-INF/page/jspf/footer.jspf" />
 		</div>
 		
 	</div>
