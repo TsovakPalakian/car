@@ -100,32 +100,7 @@
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
-					<div class='form-row' id="selectgender">
-						<label>
-							<div style="float: left;">
-								<span>Gender</span>
-							</div>
-							<div>
-								<font size="3"> 
-									<select id="gender" name='gender' style="width: 492px;" required>
-											<option value="Male">Male</option>
-											<option value="Female">Female</option>
-									</select>
-								</font>
-							</div> 
-						</label>
-					</div>
-
 					<div style="width: 100%; height: 1px; clear: both;"></div>
-
-					<div class="form-row">
-						<label> 
-							<span>Birthday</span> 
-							<font size="3"> 
-								<input value="1999-06-30" type="date" title="Format: YYYY-MM-DD" name="birthday" id="birthday" />
-							</font>
-						</label>
-					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
