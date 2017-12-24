@@ -9,8 +9,8 @@
 	</welcome-file-list>
 	
 	<filter>
-		<filter-name>UtilityFilter</filter-name>
-		<filter-class>by.htp.itacademy.car.web.filter.UtilityFilter</filter-class>
+		<filter-name>CommandFilter</filter-name>
+		<filter-class>by.htp.itacademy.car.web.filter.CommandFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -18,8 +18,8 @@
 	</filter>
 
 	<filter>
-		<filter-name>FilterExam</filter-name>
-		<filter-class>by.htp.itacademy.car.web.filter.FilterExam</filter-class>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>by.htp.itacademy.car.web.filter.EncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -28,12 +28,12 @@
 	
 	
 	<filter-mapping>
-		<filter-name>UtilityFilter</filter-name>
+		<filter-name>CommandFilter</filter-name>
 		<url-pattern>/Controller</url-pattern>
 	</filter-mapping>
 	
 	<filter-mapping>
-		<filter-name>FilterExam</filter-name>
+		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>/Controller</url-pattern>
 	</filter-mapping>
 

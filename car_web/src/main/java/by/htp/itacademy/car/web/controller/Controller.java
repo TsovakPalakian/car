@@ -34,6 +34,8 @@ public class Controller extends HttpServlet {
 		
 		String command = request.getParameter(REQUEST_PARAMETER_ACTION);
 		
+		System.out.println(command);
+		
 		ResponseParameter responseParam = EnumAction.valueOf(command.toUpperCase()).getAction().execute(request);
 		
 		if (responseParam.isStateResponse()) {
