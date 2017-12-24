@@ -158,7 +158,7 @@
 		
 	</div>
 	
-	<script src="${pageContext.request.contextPath}/js/scriptSignUp.js"
+	<script src="web/js/scriptSignUp.js"
 		charset="utf-8">
 	</script>
 </body>
