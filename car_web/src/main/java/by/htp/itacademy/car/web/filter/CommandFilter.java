@@ -48,6 +48,6 @@ public class CommandFilter implements Filter {
 	}
 	
 	private boolean checkUserAccess(User user, String command) throws IOException, ServletException {
-		return false;
+		return true;
 	}
 }

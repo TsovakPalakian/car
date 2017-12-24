@@ -1,6 +1,7 @@
 package by.htp.itacademy.car.web.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseParameter;
@@ -20,7 +21,7 @@ public class SignUpPageAction implements Action {
 	}
 	
 	@Override
-	public ResponseParameter execute(HttpServletRequest request) {
+	public ResponseParameter execute(HttpServletRequest request, HttpServletResponse response) {
 		return null;
 	}
 }
