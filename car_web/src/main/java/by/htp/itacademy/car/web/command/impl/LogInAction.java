@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseParameter;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 public class LogInAction implements Action {
 
-	private LogInAction() {
-		
-	}
+	private LogInAction() {}
 
 	private static class Singletone {
 		private static final LogInAction INSTANCE = new LogInAction();

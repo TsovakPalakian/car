@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseParameter;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 public class SignUpPageAction implements Action {
-
+	
 	private SignUpPageAction() {
 		
 	}
