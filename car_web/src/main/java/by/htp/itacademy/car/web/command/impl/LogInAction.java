@@ -21,12 +21,7 @@ public class LogInAction implements Action {
 	private ResponseParameter responseParameter;
 	
 	private LogInAction() {
-		try {
-			userService = UserServiceImpl.getInstance();
-		} catch (ServiceException e) {
-			log.error(ERROR_CREATING_INSTANCE_OF_CLASS + UserServiceImpl.class.getSimpleName());
-			e.printStackTrace();
-		}
+		userService = UserServiceImpl.getInstance();
 	}
 
 	private static class Singletone {

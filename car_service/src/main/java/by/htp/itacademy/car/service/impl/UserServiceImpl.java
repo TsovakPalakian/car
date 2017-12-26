@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService {
 		private static final UserServiceImpl INSTANCE = new UserServiceImpl();
 	}
 
-	public static UserServiceImpl getInstance() throws ServiceException {
+	public static UserServiceImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
 

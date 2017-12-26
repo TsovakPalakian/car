@@ -11,5 +11,4 @@ public final class Parameter {
 	public static final String REQUEST_ATTRIBUTE_USER = "user";
 	public static final String MESSAGE_NO_ACCESS = "Sorry, but you do not have access to this page!";
 	
-	public static final String ERROR_CREATING_INSTANCE_OF_CLASS = "Error creating instace of class ";
 }

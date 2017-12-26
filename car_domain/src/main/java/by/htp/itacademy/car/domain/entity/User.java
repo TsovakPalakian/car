@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("serial")
 public class User implements Entity, Serializable {
-	
-	private static final long serialVersionUID = -2781003932706380906L;
 	
 	private Long userId;
 	private String name;
