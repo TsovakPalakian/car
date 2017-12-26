@@ -5,13 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
-import by.htp.itacademy.car.service.exception.ServiceException;
 import by.htp.itacademy.car.service.impl.UserServiceImpl;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseParameter;
 import lombok.extern.log4j.Log4j;
-
-import static by.htp.itacademy.car.web.util.Parameter.*;
 
 @Log4j
 public class LogInAction implements Action {
