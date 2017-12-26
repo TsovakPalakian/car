@@ -5,8 +5,7 @@ import by.htp.itacademy.car.service.exception.ServiceException;
 
 public class UserServiceImpl implements UserService {
 
-	private UserServiceImpl() {
-	}
+	private UserServiceImpl() {}
 
 	private static class Singletone {
 		private static final UserServiceImpl INSTANCE = new UserServiceImpl();
