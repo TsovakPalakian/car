@@ -31,7 +31,7 @@ public class LogInAction implements Action {
 	public ResponseParameter execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
-		
+		responseParameter.setStateResponse(true);
 		
 		
 		return null;
