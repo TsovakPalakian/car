@@ -1,5 +1,10 @@
 package by.htp.itacademy.car.web.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import by.htp.itacademy.car.web.command.exception.CommandInvalidParameterException;
+
 public class Validator {
 	
 	private static final String NAME_REGEX = "[A-Z]{1}[a-z]{0,100}";
@@ -9,9 +14,25 @@ public class Validator {
     private static final String PASSPORT_REGEX = "[A-Z]{2}[0-9]{7}";
     private static final String PHONE_NUMBER_REGEX = "[\\+]{1}[0-9]{2,4}[0-9]+";
 	
+    private static Pattern pattern;
+    private static Matcher matcher;
+    
 	private Validator() {};
 	
+	public static boolean nameValidation(String name) throws CommandInvalidParameterException {
+		if (name == null)
+			throw new CommandInvalidParameterException();
+		
+		pattern = Pattern.compile(NAME_REGEX);
+		matcher = pattern.matcher(name);
+		
+		return matcher.matches();
+	}
 	
-    
-    
+	public static boolean loginValidation(String login) throws CommandInvalidParameterException {
+		if (login == null)
+			throw new CommandInvalidParameterException();
+		
+		return Pattern.matches(LOGIN_REGEX, login);
+	}
 }
