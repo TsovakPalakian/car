@@ -15,8 +15,18 @@ public class ResponseParameter implements Serializable {
 	private String pageResponse;
 	private boolean stateResponse;
 	
+	public ResponseParameter(boolean stateResponse) {
+		this.stateResponse = stateResponse;
+	}
+
+	public ResponseParameter(String pageResponse) {
+		super();
+		this.pageResponse = pageResponse;
+	}
+	
 	public void chageResponse(String pageResponse, boolean stateResponse) {
 		this.pageResponse = pageResponse;
 		this.stateResponse = stateResponse;
 	}
+	
 }
