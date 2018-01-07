@@ -19,21 +19,5 @@ public class Validator {
     
 	private Validator() {};
 	
-	public static boolean nameValidation(String regex, String name) throws CommandInvalidParameterException {
-		if (name == null)
-			throw new CommandInvalidParameterException();
 		
-		pattern = Pattern.compile(NAME_REGEX);
-		matcher = pattern.matcher(name);
-		
-		return matcher.matches();
-	}
-	
-	public static boolean loginValidation(String login) throws CommandInvalidParameterException {
-		if (login == null)
-			throw new CommandInvalidParameterException();
-		
-		return Pattern.matches(LOGIN_REGEX, login);
-	}
-	
 }

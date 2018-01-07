@@ -6,14 +6,25 @@ import javax.servlet.http.HttpSession;
 
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
+import by.htp.itacademy.car.web.annotation.FillingOutData;
+import by.htp.itacademy.car.web.annotation.NewInstance;
+import by.htp.itacademy.car.web.annotation.Validation;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseParameter;
-import lombok.extern.log4j.Log4j;
 
-@Log4j
+import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.*;
+
 public class LogInAction implements Action {
 	
-	private User user;
+	@NewInstance
+	@FillingOutData(name = "userLogIn", value = TWO)
+	@Validation
+	private User userFromForm;
+	
+	@NewInstance
+	private User userFromDb;
+	
+	@NewInstance
 	private UserService userService;
 	
 	private LogInAction() {}
@@ -31,6 +42,7 @@ public class LogInAction implements Action {
 		
 		HttpSession session = request.getSession();
 		ResponseParameter responseParameter = new ResponseParameter(true);
+		
 		
 		
 		return null;
