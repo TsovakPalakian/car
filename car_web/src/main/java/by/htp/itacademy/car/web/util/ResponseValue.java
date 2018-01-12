@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("serial")
-public class ResponseParameter implements Serializable {
+public class ResponseValue implements Serializable {
 	
 	private String pageResponse;
 	private boolean stateResponse;
 	
-	public ResponseParameter(boolean stateResponse) {
+	public ResponseValue(boolean stateResponse) {
 		this.stateResponse = stateResponse;
 	}
 
-	public ResponseParameter(String pageResponse) {
+	public ResponseValue(String pageResponse) {
 		super();
 		this.pageResponse = pageResponse;
 	}

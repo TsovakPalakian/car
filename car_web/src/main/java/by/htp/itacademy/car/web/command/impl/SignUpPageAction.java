@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.web.command.Action;
-import by.htp.itacademy.car.web.util.ResponseParameter;
+import by.htp.itacademy.car.web.util.ResponseValue;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -23,7 +23,7 @@ public class SignUpPageAction implements Action {
 	}
 	
 	@Override
-	public ResponseParameter execute(HttpServletRequest request, HttpServletResponse response) {
-		return new ResponseParameter("/WEB-INF/page/jsp/sign_up_page.jsp", false);
+	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
+		return new ResponseValue("/WEB-INF/page/jsp/sign_up_page.jsp", false);
 	}
 }

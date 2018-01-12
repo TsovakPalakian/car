@@ -14,6 +14,7 @@ import static java.lang.annotation.ElementType.*;
 @Target({FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FillingOutData {
-	String name() default "";
-	ConstructorParametersEnum value() default ZERO;
+	String name();
+	String nameOfParameters() default "";
+	ConstructorParametersEnum numberOfParameters() default ZERO;
 }

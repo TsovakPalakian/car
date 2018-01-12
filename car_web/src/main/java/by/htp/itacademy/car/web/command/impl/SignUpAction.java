@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.web.command.Action;
-import by.htp.itacademy.car.web.util.ResponseParameter;
+import by.htp.itacademy.car.web.util.ResponseValue;
 
 public class SignUpAction implements Action {
 
@@ -21,7 +21,7 @@ public class SignUpAction implements Action {
 	}
 	
 	@Override
-	public ResponseParameter execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
 		return null;
 	}
 }

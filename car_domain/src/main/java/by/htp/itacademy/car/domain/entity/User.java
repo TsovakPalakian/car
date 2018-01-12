@@ -21,10 +21,9 @@ public class User implements Entity, Serializable {
 	private String phoneNumber;
 	private String email;
 	private String driverLicense;
-	private String role;
+	private Boolean role;
 
 	public User(String login, String password) {
-		super();
 		this.login = login;
 		this.password = password;
 	}

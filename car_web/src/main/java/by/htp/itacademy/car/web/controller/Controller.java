@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.itacademy.car.web.command.EnumAction;
-import by.htp.itacademy.car.web.util.ResponseParameter;
+import by.htp.itacademy.car.web.util.ResponseValue;
 
 import static by.htp.itacademy.car.web.util.Parameter.*;
 
@@ -36,7 +36,7 @@ public class Controller extends HttpServlet {
 		
 		System.out.println(command);
 		
-		ResponseParameter responseParam = EnumAction.valueOf(command.toUpperCase()).getAction().execute(request, response);
+		ResponseValue responseParam = EnumAction.valueOf(command.toUpperCase()).getAction().execute(request, response);
 		
 		if (responseParam.isStateResponse()) {
 			response.getWriter().println(responseParam.getPageResponse());

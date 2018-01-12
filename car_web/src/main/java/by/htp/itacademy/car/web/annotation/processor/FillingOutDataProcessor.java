@@ -24,9 +24,10 @@ public final class FillingOutDataProcessor implements AnnotationProcessor {
 				field.setAccessible(true);
 				
 				Annotation annotation = field.getAnnotation(FillingOutData.class);
-				FillingOutData fill = (FillingOutData) annotation;
+				FillingOutData fillingOutData = (FillingOutData) annotation;
 				
-				field.set(obj, getConstructor(obj, fill.value()).newInstance(getParametersFromReques(request, obj, parametersFromForm)));
+				field.set(obj, getConstructor(obj, fillingOutData.numberOfParameters())
+						.newInstance(getParametersFromReques(request, obj, parametersFromForm)));
 			}
 		}
 	}
