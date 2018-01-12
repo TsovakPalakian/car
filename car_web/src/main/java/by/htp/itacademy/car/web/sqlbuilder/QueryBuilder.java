@@ -7,4 +7,9 @@ public class QueryBuilder {
 	public QueryBuilder() {
 		this.query = new Query();
 	}
+	
+	public QueryBuilder from() {
+		this.query.append("FROM ");
+		return this;
+	}
 }
