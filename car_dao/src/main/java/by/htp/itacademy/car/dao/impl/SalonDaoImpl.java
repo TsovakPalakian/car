@@ -1,6 +1,6 @@
 package by.htp.itacademy.car.dao.impl;
 
-import java.util.Map;
+import java.util.List;
 
 import by.htp.itacademy.car.dao.EntityDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
@@ -20,7 +20,7 @@ public class SalonDaoImpl implements EntityDao {
 	}
 	
 	@Override
-	public Map<Long, Entity> select(Entity entity) throws DaoException {
+	public List<Entity> select(Entity entity) throws DaoException {
 		return null;
 	}
 

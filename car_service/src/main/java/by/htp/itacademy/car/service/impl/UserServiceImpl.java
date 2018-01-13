@@ -14,5 +14,6 @@ public class UserServiceImpl implements UserService {
 	public static UserServiceImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
-
+	
+	
 }
