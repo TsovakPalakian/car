@@ -8,13 +8,14 @@ import by.htp.itacademy.car.service.exception.ServiceNoSuchUserException;
 
 public interface UserService {
 	
-	User logIn(User user) throws ServiceNoSuchUserException;
+	List<User> logIn(User user) throws ServiceNoSuchUserException;
 	
-	void signUp(User user) throws ServiceException;
+	boolean signUp(User user) throws ServiceException;
 
-	void removeUser(User user) throws ServiceException;
+	boolean removeUser(User user) throws ServiceException;
 	
-	void updateUser(User user) throws ServiceException;
+	boolean updateUserData(User user) throws ServiceException;
 	
-	<V> List<User> getUser(V value) throws ServiceNoSuchUserException;
+	List<User> getUser(List<String> conditions) throws ServiceNoSuchUserException;
+	
 }
