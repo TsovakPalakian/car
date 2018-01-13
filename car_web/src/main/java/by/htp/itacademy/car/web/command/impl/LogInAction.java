@@ -19,73 +19,70 @@ import lombok.Setter;
 import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.*;
 
 public class LogInAction implements Action {
-	
+
 	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
 	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
-	
-	@Setter 
-	private User user;
-	
+
 	@NewInstance
 	private UserService userService;
-	
-	private LogInAction() {}
+
+	private LogInAction() {
+	}
 
 	private static class Singletone {
 		private static final LogInAction INSTANCE = new LogInAction();
 	}
-	
+
 	public static LogInAction getInstance() {
 		return Singletone.INSTANCE;
 	}
-	
+
 	@Override
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		ResponseValue responseValue = new ResponseValue(true);
-		User user = null;
+		User user = new User();
 		try {
-			user = createUser(this.user);
+			try {
+				user = fillingOutData(user);
+			} catch (InstantiationException | IllegalAccessException e) {
+
+			}
 		} catch (IllegalParameterException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
 			return responseValue;
 		}
-		
+
 		authorisationUser(request, response, user);
 		return null;
 	}
-	
-	private User createUser (
-			
-			@NewInstance
-			@FillingOutData(
-					name = "form",
-					nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, 
-					numberOfParameters = TWO)
-			@Validation User user) 
-					throws IllegalParameterException {
-		
+
+	private User fillingOutData(
+
+			@FillingOutData(name = "form", nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, numberOfParameters = TWO) @Validation User user)
+			throws IllegalParameterException, InstantiationException, IllegalAccessException {
+
 		return user;
 	}
-	
-	private ResponseValue authorisationUser(
-			HttpServletRequest request,
-			HttpServletResponse response,
-			@Cryptographer(name = "encrypt", fields = {"password"}) User user) {
-		
+
+	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response,
+			@Cryptographer(name = "encrypt", fields = { "password" }) User user) {
+
 		ResponseValue responseValue = new ResponseValue(true);
 		try {
 			user = userService.logIn(user);
-			if (user.getRole() == 0) {
-				inputCookie(response);
-			} else if (user.getRole() == 1) {
-				
-			}
-			
+			inputCookie(response, user);
 			request.getSession().setAttribute("user", user);
-			request.setAttribute("user", request.getAttribute("user"));
-		
+
+			if (user.getRole() == 0) {
+
+			} else if (user.getRole() == 1) {
+
+			}
+
+			request.setAttribute("user", request.getSession().getAttribute("user"));
+
 		} catch (ServiceNoSuchUserException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
@@ -93,9 +90,9 @@ public class LogInAction implements Action {
 		}
 		return null;
 	}
-	
-	private void inputCookie(HttpServletResponse response) {
-		response.addCookie(new Cookie("logIn", this.user.getLogin()));
-		response.addCookie(new Cookie("password", this.user.getPassword()));
+
+	private void inputCookie(HttpServletResponse response, User user) {
+		response.addCookie(new Cookie("logIn", user.getLogin()));
+		response.addCookie(new Cookie("password", user.getPassword()));
 	}
 }
