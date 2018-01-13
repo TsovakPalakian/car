@@ -31,13 +31,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void logIn(User user) throws ServiceNoSuchUserException {
+	public User logIn(User user) throws ServiceNoSuchUserException {
+		User userFromDB = null;
 		try {
-			dao.select(user);
+			userFromDB = (User) dao.select(user).get(FIRST_ELEMENT_FROM_LIST_OF_USERS);
+			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getUserId());
 		} catch (DaoException e) {
 			log.error(LOG_ERROR + e.getMessage());
 			throw new ServiceNoSuchUserException();
 		}
+		return userFromDB;
 	}
 
 	@Override

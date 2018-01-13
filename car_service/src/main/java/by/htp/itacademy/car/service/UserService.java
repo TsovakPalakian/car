@@ -8,7 +8,7 @@ import by.htp.itacademy.car.service.exception.ServiceNoSuchUserException;
 
 public interface UserService {
 	
-	void logIn(User user) throws ServiceNoSuchUserException;
+	User logIn(User user) throws ServiceNoSuchUserException;
 	
 	boolean signUp(User user) throws ServiceException;
 
