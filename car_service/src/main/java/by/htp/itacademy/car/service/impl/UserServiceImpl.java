@@ -3,6 +3,7 @@ package by.htp.itacademy.car.service.impl;
 import java.util.List;
 
 import by.htp.itacademy.car.dao.EntityDao;
+import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.dao.impl.UserDaoImpl;
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
@@ -31,7 +32,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User logIn(User user) throws ServiceNoSuchUserException {
-		// TODO Auto-generated method stub
+		try {
+			dao.select(user).get(0);
+		} catch (DaoException e) {
+			
+		}
 		return null;
 	}
 
