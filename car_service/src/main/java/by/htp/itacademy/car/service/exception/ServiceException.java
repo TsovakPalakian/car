@@ -1,8 +1,7 @@
 package by.htp.itacademy.car.service.exception;
 
+@SuppressWarnings("serial")
 public class ServiceException extends Exception {
-
-	private static final long serialVersionUID = -8355639682421781074L;
 
 	public ServiceException() {
 		super();
