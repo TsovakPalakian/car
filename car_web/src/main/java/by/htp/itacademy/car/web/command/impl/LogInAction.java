@@ -52,6 +52,7 @@ public class LogInAction implements Action {
 			return responseValue;
 		}
 		
+		authorisationUser(request, response, user);
 		return null;
 	}
 	
@@ -62,8 +63,7 @@ public class LogInAction implements Action {
 					name = "form",
 					nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, 
 					numberOfParameters = TWO)
-			@Validation 
-			User user) 
+			@Validation User user) 
 					throws IllegalParameterException {
 		
 		return user;
@@ -82,6 +82,10 @@ public class LogInAction implements Action {
 			} else if (user.getRole() == 1) {
 				
 			}
+			
+			request.getSession().setAttribute("user", user);
+			request.setAttribute("user", request.getAttribute("user"));
+		
 		} catch (ServiceNoSuchUserException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
