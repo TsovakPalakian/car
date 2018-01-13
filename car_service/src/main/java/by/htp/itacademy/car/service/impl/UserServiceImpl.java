@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class UserServiceImpl implements UserService {
-	
+	private static final Integer FIRST_ELEMENT_FROM_LIST_OF_USERS = 0;
 	private static final String LOG_ERROR = " ERROR: ";
 	
 	private EntityDao dao;
@@ -31,13 +31,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User logIn(User user) throws ServiceNoSuchUserException {
+	public void logIn(User user) throws ServiceNoSuchUserException {
 		try {
-			dao.select(user).get(0);
+			dao.select(user);
 		} catch (DaoException e) {
-			
+			log.error(LOG_ERROR + e.getMessage());
+			throw new ServiceNoSuchUserException();
 		}
-		return null;
 	}
 
 	@Override
