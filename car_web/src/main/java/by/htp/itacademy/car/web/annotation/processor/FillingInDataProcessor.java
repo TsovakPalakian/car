@@ -17,7 +17,7 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 	
 	public FillingInDataProcessor() {}
 	
-	public void fillingInDataFromForm(HttpServletRequest request, Object obj, List<String> parametersFromForm) 
+	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj, List<String> parametersFromForm) 
 			throws IllegalAccessException, IllegalParameterException, InstantiationException {
 		
 		for (Field field : obj.getClass().getDeclaredFields()) {
@@ -45,6 +45,10 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 				}
 			}
 		}
+	}
+	
+	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj, List<String> parametersFromForm) {
+		
 	}
 	
 	Object[] getParametersFromReques(HttpServletRequest request, Object obj, List<String> parametersFromForm) {

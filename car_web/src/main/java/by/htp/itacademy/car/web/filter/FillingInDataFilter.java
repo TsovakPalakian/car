@@ -24,7 +24,7 @@ public class FillingInDataFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		try {
 			
-			fill.fillingInDataFromForm(httpRequest, LogInAction.getInstance(), 
+			fill.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance(), 
 					ConstantValue.ALL_MAPS_OF_PARAMETERS.get(ConstantValue.PARAMETERS_FOR_LOGIN));
 			
 		} catch (IllegalArgumentException e) {
