@@ -14,7 +14,6 @@ import by.htp.itacademy.car.web.annotation.Validation;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
-import lombok.Setter;
 
 import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.*;
 
@@ -41,13 +40,9 @@ public class LogInAction implements Action {
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
 
 		ResponseValue responseValue = new ResponseValue(true);
-		User user = new User();
+		User user = null;
 		try {
-			try {
-				user = fillingOutData(user);
-			} catch (InstantiationException | IllegalAccessException e) {
-
-			}
+			user = fillingOutDataUser(user);
 		} catch (IllegalParameterException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
@@ -58,10 +53,13 @@ public class LogInAction implements Action {
 		return null;
 	}
 
-	private User fillingOutData(
+	private User fillingOutDataUser(
 
-			@FillingOutData(name = "form", nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, numberOfParameters = TWO) @Validation User user)
-			throws IllegalParameterException, InstantiationException, IllegalAccessException {
+			@FillingOutData(name = "form", 
+				nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, 
+				numberOfParameters = TWO) 
+			@Validation User user)
+				throws IllegalParameterException {
 
 		return user;
 	}
@@ -73,16 +71,15 @@ public class LogInAction implements Action {
 		try {
 			user = userService.logIn(user);
 			inputCookie(response, user);
-			request.getSession().setAttribute("user", user);
 
 			if (user.getRole() == 0) {
-
+				request.getSession().setAttribute("user", user);
+				request.setAttribute("user", request.getSession().getAttribute("user"));
 			} else if (user.getRole() == 1) {
-
+				request.getSession().setAttribute("admin", user);
+				request.setAttribute("admin", request.getSession().getAttribute("admin"));
 			}
-
-			request.setAttribute("user", request.getSession().getAttribute("user"));
-
+			
 		} catch (ServiceNoSuchUserException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
