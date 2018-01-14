@@ -22,6 +22,9 @@ public class LogInAction implements Action {
 	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
 	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
 
+	
+	private User user;
+	
 	@NewInstance
 	private UserService userService;
 
@@ -40,16 +43,16 @@ public class LogInAction implements Action {
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
 
 		ResponseValue responseValue = new ResponseValue(true);
-		User user = null;
+
 		try {
-			fillingInData(user);
+			fillingInData(this.user);
 		} catch (IllegalParameterException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
 			return responseValue;
 		}
 
-		authorisationUser(request, response, user);
+		authorisationUser(request, response, this.user);
 		return null;
 	}
 
@@ -60,7 +63,8 @@ public class LogInAction implements Action {
 				numberOfParameters = TWO) 
 			@Validation User user)
 				throws IllegalParameterException {
-
+		
+		this.user = user;
 	}
 
 	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response,
