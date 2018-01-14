@@ -10,7 +10,7 @@ public final class ConstantValue {
 	private ConstantValue(){}
 	
 	public static final String REQUEST_PARAM_ACTION = "command";
-	public static final String FOR_LOGIN_PARAMETERS = "login";
+	public static final String PARAMETERS_FOR_LOGIN = "login";
 	
 	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
 	public static final String PAGE_HOME = "jsp/home_page.jsp";
@@ -47,7 +47,7 @@ public final class ConstantValue {
 		List<String> parametersForLogIn = new LinkedList<>();
 		parametersForLogIn.add("login");		
 		parametersForLogIn.add("password");
-		ALL_MAPS_OF_PARAMETERS.put(FOR_LOGIN_PARAMETERS, parametersForLogIn);
+		ALL_MAPS_OF_PARAMETERS.put(PARAMETERS_FOR_LOGIN, parametersForLogIn);
 	}
 	
 	static {	

@@ -1,7 +1,6 @@
 package by.htp.itacademy.car.web.filter;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -24,19 +23,18 @@ public class FillingInDataFilter implements Filter {
 		FillingInDataProcessor fill = new FillingInDataProcessor();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		try {
-			fill.fillingInDataFromForm(httpRequest, LogInAction.getInstance(), ConstantValue.ALL_MAPS_OF_PARAMETERS);
+			
+			fill.fillingInDataFromForm(httpRequest, LogInAction.getInstance(), 
+					ConstantValue.ALL_MAPS_OF_PARAMETERS.get(ConstantValue.PARAMETERS_FOR_LOGIN));
+			
 		} catch (IllegalArgumentException e) {
 			
 		} catch (IllegalAccessException e) {
 			
 		} catch (InstantiationException e) {
 			
-		} catch (InvocationTargetException e) {
-			
 		} catch (IllegalParameterException e) {
 			
 		}
-		
 	}
-
 }
