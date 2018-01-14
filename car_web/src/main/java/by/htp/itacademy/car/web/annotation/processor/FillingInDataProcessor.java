@@ -3,6 +3,7 @@ package by.htp.itacademy.car.web.annotation.processor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 	public FillingInDataProcessor() {}
 	
 	public void fillingInDataFromForm(HttpServletRequest request, Object obj, Map<String, List<String>> parametersFromForm) 
-			throws Exception {
+			throws IllegalAccessException, IllegalParameterException, InstantiationException {
 		
 		for (Field field : obj.getClass().getDeclaredFields()) {
 			if (field != null && field.isAnnotationPresent(FillingInData.class)) {
@@ -28,14 +29,26 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 				Annotation annotation = field.getAnnotation(FillingInData.class);
 				FillingInData fillingInData = (FillingInData) annotation;
 				
-				field.set(obj, getConstructor(obj, fillingInData.numberOfParameters())
-						.newInstance(getParametersFromReques(request, obj, parametersFromForm)));
+				try {
+					field.set(obj, getConstructor(obj, fillingInData.numberOfParameters())
+							.newInstance(getParametersFromReques(request, obj, parametersFromForm)));
+				} catch (IllegalArgumentException e) {
+					throw new IllegalArgumentException(e.getMessage());
+				} catch (IllegalAccessException e) {
+					throw new IllegalAccessException(e.getMessage());
+				} catch (InstantiationException e) {
+					throw new InstantiationException(e.getMessage());
+				} catch (IllegalParameterException e) {
+					throw new IllegalParameterException(e.getMessage());
+				} catch (InvocationTargetException e) {
+					
+				}
 			}
 		}
 	}
 	
-	Object[] getParametersFromReques(HttpServletRequest request, Object obj, Map<String, List<String>> parametersFromForm) 
-			throws Exception {
+	Object[] getParametersFromReques(HttpServletRequest request, Object obj, 
+								Map<String, List<String>> parametersFromForm) {
 		
 		String objSimpleName = obj.getClass().getSimpleName().toLowerCase();
 		byte count = (byte) parametersFromForm.get(objSimpleName).size();
@@ -51,8 +64,7 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 	}
 	
 	//There is the problem of choosing a constructor of class with an equal number of parameters.
-	Constructor<?> getConstructor(Object obj, ConstructorParametersEnum count) 
-			throws IllegalParameterException {
+	Constructor<?> getConstructor(Object obj, ConstructorParametersEnum count) throws IllegalParameterException {
 		
 		if (obj == null) {
 			throw new IllegalParameterException("An object can not to be null!");

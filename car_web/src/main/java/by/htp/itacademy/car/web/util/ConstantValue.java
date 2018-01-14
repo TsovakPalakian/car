@@ -10,13 +10,14 @@ public final class ConstantValue {
 	private ConstantValue(){}
 	
 	public static final String REQUEST_PARAM_ACTION = "command";
+	public static final String FOR_LOGIN_PARAMETERS = "login";
 	
 	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
 	public static final String PAGE_HOME = "jsp/home_page.jsp";
 	public static final String SESSION_ATTRIBUTE_USER = "user";
 	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
 
-	public static final Map<String, List<String>> allListsParameters = new ConcurrentHashMap<String, List<String>>();
+	public static final Map<String, List<String>> ALL_MAPS_OF_PARAMETERS = new ConcurrentHashMap<String, List<String>>();
 	public static final Map<String, String> REGEX_PARAMETERS = new ConcurrentHashMap<String, String>();
 	
 	static {
@@ -39,14 +40,14 @@ public final class ConstantValue {
 		parametersForSignUp.add("email");
 		parametersForSignUp.add("phoneNumber");
 		parametersForSignUp.add("driverLicence");
-		allListsParameters.put("customerto", parametersForSignUp);
+		ALL_MAPS_OF_PARAMETERS.put("signup", parametersForSignUp);
 	}
 	
 	static {
 		List<String> parametersForLogIn = new LinkedList<>();
 		parametersForLogIn.add("login");		
 		parametersForLogIn.add("password");
-		allListsParameters.put("customertolp", parametersForLogIn);
+		ALL_MAPS_OF_PARAMETERS.put(FOR_LOGIN_PARAMETERS, parametersForLogIn);
 	}
 	
 	static {	
@@ -57,6 +58,6 @@ public final class ConstantValue {
 		parametersForUpdateData.add("email");
 		parametersForUpdateData.add("phoneNumber");
 		parametersForUpdateData.add("driverLicence");
-		allListsParameters.put("customertoupdate", parametersForUpdateData);
+		ALL_MAPS_OF_PARAMETERS.put("customertoupdate", parametersForUpdateData);
 	}
 }
