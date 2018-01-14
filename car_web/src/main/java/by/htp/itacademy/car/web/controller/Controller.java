@@ -7,18 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.htp.connector.DatabaseConnectionException;
+import by.htp.itacademy.car.dao.connector.ConnectionPool;
 import by.htp.itacademy.car.web.command.EnumAction;
 import by.htp.itacademy.car.web.util.ResponseValue;
 
 import static by.htp.itacademy.car.web.util.Parameter.*;
 
+@SuppressWarnings("serial")
 public class Controller extends HttpServlet {
 
-	private static final long serialVersionUID = 1974009855854795944L;
-
-	public Controller() {
-		
-	}
+	public Controller() {}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,12 +35,24 @@ public class Controller extends HttpServlet {
 		
 		System.out.println(command);
 		
-		ResponseValue responseParam = EnumAction.valueOf(command.toUpperCase()).getAction().execute(request, response);
+		ResponseValue responseValue = EnumAction.valueOf(command.toUpperCase()).getAction().execute(request, response);
 		
-		if (responseParam.isStateResponse()) {
-			response.getWriter().println(responseParam.getPageResponse());
+		if (responseValue.isStateResponse()) {
+			response.getWriter().println(responseValue.getPageResponse());
 		} else {
-			request.getRequestDispatcher(responseParam.getPageResponse()).forward(request, response);
+			request.getRequestDispatcher(responseValue.getPageResponse()).forward(request, response);
 		}
 	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+		try {
+			ConnectionPool.getInstance().close();
+		} catch (DatabaseConnectionException e) {
+			
+		}
+	}
+	
+	
 }

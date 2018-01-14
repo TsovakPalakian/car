@@ -9,14 +9,14 @@ import by.htp.connector.IConnection;
 
 import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
 
-public final class JDBCConnectionPool extends AbstractConnectionPool implements IConnection {
+public final class ConnectionPool extends AbstractConnectionPool implements IConnection {
 
 	private Long connectionPoolSize = CONNECTION_POOL_INITIAL_SIZE;
 	private Long numberOfConnectionsUsed = INITIAL_NUMBER_OF_CONNECTIONS_USED;
 	
 	private final static ConcurrentHashMap<Connection, Boolean> CONNECTIONS = new ConcurrentHashMap<Connection, Boolean>();
 	
-	private JDBCConnectionPool() {
+	private ConnectionPool() {
 		try {
 			initResource(JDBC_RESOURCE_BUNDLE_PARAMETER_CONFIG, JDBC_RESOURCE_BUNDLE_PARAMETER_URL, 
 					JDBC_RESOURCE_BUNDLE_PARAMETER_LOGIN, JDBC_RESOURCE_BUNDLE_PARAMETER_PASSWORD, 
@@ -29,10 +29,10 @@ public final class JDBCConnectionPool extends AbstractConnectionPool implements 
 	}
 
 	private static class Singleton {
-		private static final JDBCConnectionPool INSTANCE = new JDBCConnectionPool();
+		private static final ConnectionPool INSTANCE = new ConnectionPool();
 	}
 
-	public static JDBCConnectionPool getInstance() {
+	public static ConnectionPool getInstance() {
 		return Singleton.INSTANCE;
 	}
 
