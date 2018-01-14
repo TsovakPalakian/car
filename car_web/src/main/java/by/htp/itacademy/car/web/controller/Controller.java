@@ -1,7 +1,9 @@
 package by.htp.itacademy.car.web.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.connector.DatabaseConnectionException;
 import by.htp.itacademy.car.dao.connector.ConnectionPool;
+import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.command.EnumAction;
 import by.htp.itacademy.car.web.util.ResponseValue;
+import lombok.extern.log4j.Log4j;
 
 import static by.htp.itacademy.car.web.util.Parameter.*;
 
+@Log4j
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
 
@@ -32,16 +37,19 @@ public class Controller extends HttpServlet {
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String command = request.getParameter(REQUEST_PARAMETER_ACTION);
+		String commandToUpperCase = command.toUpperCase();
+		System.out.println(commandToUpperCase);
 		
-		System.out.println(command);
+		Action action = EnumAction.valueOf(commandToUpperCase).getAction();
+		ResponseValue responseValue = action.execute(request, response);
 		
-		ResponseValue responseValue = EnumAction.valueOf(command.toUpperCase()).getAction().execute(request, response);
-		
+		PrintWriter printWriter = response.getWriter();
 		if (responseValue.isStateResponse()) {
-			response.getWriter().println(responseValue.getPageResponse());
-		} else {
-			request.getRequestDispatcher(responseValue.getPageResponse()).forward(request, response);
-		}
+			printWriter.println(responseValue.getPageResponse());
+		} 
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(responseValue.getPageResponse());
+		dispatcher.forward(request, response);
 	}
 
 	@Override
@@ -50,7 +58,7 @@ public class Controller extends HttpServlet {
 		try {
 			ConnectionPool.getInstance().close();
 		} catch (DatabaseConnectionException e) {
-			
+			log.error("The connections have not been closed! " + e.getMessage());
 		}
 	}
 	
