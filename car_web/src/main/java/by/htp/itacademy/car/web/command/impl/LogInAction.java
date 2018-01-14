@@ -42,7 +42,7 @@ public class LogInAction implements Action {
 		ResponseValue responseValue = new ResponseValue(true);
 		User user = null;
 		try {
-			user = (User) fillingInData(User.class);
+			fillingInData(user);
 		} catch (IllegalParameterException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
@@ -53,15 +53,14 @@ public class LogInAction implements Action {
 		return null;
 	}
 
-	private Object fillingInData(
+	private void fillingInData(
 
 			@FillingInData(name = "form", 
 				nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, 
 				numberOfParameters = TWO) 
-			@Validation Class<?> clazz)
+			@Validation User user)
 				throws IllegalParameterException {
 
-		return clazz;
 	}
 
 	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response,
