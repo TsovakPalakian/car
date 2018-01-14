@@ -14,9 +14,9 @@ import by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum;
 
 public final class FillingInDataProcessor implements AnnotationProcessor {
 	
-	FillingInDataProcessor() {}
+	public FillingInDataProcessor() {}
 	
-	void fillingInDataFromForm(HttpServletRequest request, Object obj, Map<String, List<String>> parametersFromForm) 
+	public void fillingInDataFromForm(HttpServletRequest request, Object obj, Map<String, List<String>> parametersFromForm) 
 			throws Exception {
 		
 		for (Field field : obj.getClass().getDeclaredFields()) {
