@@ -8,25 +8,27 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.web.annotation.FillingOutData;
+import by.htp.itacademy.car.web.annotation.FillingInData;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum;
 
-public final class FillingOutDataProcessor implements AnnotationProcessor {
+public final class FillingInDataProcessor implements AnnotationProcessor {
 	
-	FillingOutDataProcessor() {}
+	FillingInDataProcessor() {}
 	
-	void fillingOutDataFromForm(HttpServletRequest request, Object obj, Map<String, List<String>> parametersFromForm) 
+	void fillingInDataFromForm(HttpServletRequest request, Object obj, Map<String, List<String>> parametersFromForm) 
 			throws Exception {
 		
 		for (Field field : obj.getClass().getDeclaredFields()) {
-			if (field != null && field.isAnnotationPresent(FillingOutData.class)) {
-				field.setAccessible(true);
+			if (field != null && field.isAnnotationPresent(FillingInData.class)) {
+				if (!field.isAccessible()) {
+					field.setAccessible(true);
+				}
 				
-				Annotation annotation = field.getAnnotation(FillingOutData.class);
-				FillingOutData fillingOutData = (FillingOutData) annotation;
+				Annotation annotation = field.getAnnotation(FillingInData.class);
+				FillingInData fillingInData = (FillingInData) annotation;
 				
-				field.set(obj, getConstructor(obj, fillingOutData.numberOfParameters())
+				field.set(obj, getConstructor(obj, fillingInData.numberOfParameters())
 						.newInstance(getParametersFromReques(request, obj, parametersFromForm)));
 			}
 		}
@@ -52,7 +54,7 @@ public final class FillingOutDataProcessor implements AnnotationProcessor {
 			throws IllegalParameterException {
 		
 		if (obj == null) {
-			throw new IllegalParameterException("A object can not to be null!");
+			throw new IllegalParameterException("An object can not to be null!");
 		}
 
 		Constructor<?>[] constructors = obj.getClass().getConstructors();

@@ -13,7 +13,7 @@ import static java.lang.annotation.ElementType.*;
 @Documented
 @Target({FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface FillingOutData {
+public @interface FillingInData {
 	String name();
 	String nameOfParameters() default "";
 	ConstructorParametersEnum numberOfParameters() default ZERO;

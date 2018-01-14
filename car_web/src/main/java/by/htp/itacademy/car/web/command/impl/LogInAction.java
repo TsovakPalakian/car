@@ -1,5 +1,7 @@
 package by.htp.itacademy.car.web.command.impl;
 
+import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.TWO;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,14 +10,12 @@ import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
 import by.htp.itacademy.car.service.exception.ServiceNoSuchUserException;
 import by.htp.itacademy.car.web.annotation.Cryptographer;
-import by.htp.itacademy.car.web.annotation.FillingOutData;
+import by.htp.itacademy.car.web.annotation.FillingInData;
 import by.htp.itacademy.car.web.annotation.NewInstance;
 import by.htp.itacademy.car.web.annotation.Validation;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
-
-import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.*;
 
 public class LogInAction implements Action {
 
@@ -42,7 +42,7 @@ public class LogInAction implements Action {
 		ResponseValue responseValue = new ResponseValue(true);
 		User user = null;
 		try {
-			user = fillingOutDataUser(user);
+			user = fillingInDataUser(user);
 		} catch (IllegalParameterException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
@@ -53,9 +53,9 @@ public class LogInAction implements Action {
 		return null;
 	}
 
-	private User fillingOutDataUser(
+	private User fillingInDataUser(
 
-			@FillingOutData(name = "form", 
+			@FillingInData(name = "form", 
 				nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, 
 				numberOfParameters = TWO) 
 			@Validation User user)
