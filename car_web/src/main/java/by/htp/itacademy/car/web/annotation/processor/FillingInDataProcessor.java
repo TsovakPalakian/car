@@ -50,6 +50,7 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 		return data;
 	}
 	
+	//There is the problem of choosing a constructor of class with an equal number of parameters.
 	Constructor<?> getConstructor(Object obj, ConstructorParametersEnum count) 
 			throws IllegalParameterException {
 		
