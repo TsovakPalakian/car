@@ -4,8 +4,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -85,5 +86,48 @@ public final class FillingInDataProcessor implements AnnotationProcessor {
 		}
 		
 		return constructor;
+	}
+
+	public void getMethods(Object obj) throws Exception {
+
+		Method[] methods = obj.getClass().getDeclaredMethods();
+				
+		for (Method method : methods) {
+			if (!method.isAccessible()) {
+				method.setAccessible(true);
+			}		
+			Parameter[] parameters = method.getParameters();
+			for (Parameter parameter : parameters) {
+				Annotation annotation = getAnnotation(obj, parameter);
+				
+			}
+		}
+	}
+	
+	public Annotation getAnnotation(Object obj, Parameter parameter) {
+		Annotation[] annotations = parameter.getDeclaredAnnotations();
+		FillingInData annotValue = null;
+		for (Annotation annotation : annotations) {
+			if (annotation.annotationType() == FillingInData.class) {
+				annotValue = (FillingInData) annotation;
+			}
+			
+//			for (Method method1 : methods1) {
+//				if (method1.getName().substring(3, method1.getName().length()).toLowerCase().equals(parameter.getName())) {
+//					for (Parameter parameter1 : method1.getParameters()) {
+//						Object value = null;
+//						try {
+//							if (param.value() != null) {
+//								value = FacadeCast.getCastChain().getValue(parameter1.getType(), param.value());
+//							}
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
+//						method1.invoke(obj, value);
+//					}
+//				}
+//			}
+		}
+		return annotValue;
 	}
 }
