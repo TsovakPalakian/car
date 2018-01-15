@@ -13,7 +13,6 @@ import by.htp.itacademy.car.web.annotation.Cryptographer;
 import by.htp.itacademy.car.web.annotation.FillingInData;
 import by.htp.itacademy.car.web.annotation.NewInstance;
 import by.htp.itacademy.car.web.annotation.Validation;
-import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
 
@@ -53,9 +52,7 @@ public class LogInAction implements Action {
 
 	private void fillingInData(
 
-			@FillingInData(name = "form", 
-				nameOfParameters = NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN, 
-				numberOfParameters = TWO) 
+			@FillingInData(name = "form", numberOfParameters = TWO) 
 			@Validation User user) {
 		
 		this.user = user;

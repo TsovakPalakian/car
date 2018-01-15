@@ -22,19 +22,12 @@ public class FillingInDataFilter implements Filter {
 		
 		FillingInDataProcessor fill = new FillingInDataProcessor();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
+			
 		try {
-			
 			fill.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance(), 
-					ConstantValue.ALL_MAPS_OF_PARAMETERS.get(ConstantValue.PARAMETERS_FOR_LOGIN));
-			
-		} catch (IllegalArgumentException e) {
-			
-		} catch (IllegalAccessException e) {
-			
-		} catch (InstantiationException e) {
-			
-		} catch (IllegalParameterException e) {
-			
+						ConstantValue.ALL_MAPS_OF_PARAMETERS.get(ConstantValue.PARAMETERS_FOR_LOGIN));
+		} catch (Exception e) {
+
 		}
 	}
 }
