@@ -1,6 +1,8 @@
 package by.htp.itacademy.car.web.annotation.processor.fillingindata;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
@@ -13,28 +15,42 @@ import by.htp.itacademy.car.web.annotation.util.RequestParametersEnum;
 public class FillingInDateForParameterProcessor extends FillingInDataProcessor {
 
 	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj, RequestParametersEnum params)
-			throws IllegalParameterException {
+			throws IllegalParameterException, IllegalAccessException, IllegalArgumentException, 
+				InvocationTargetException, SecurityException, ClassNotFoundException, InstantiationException {
 		
 		for (Method method : getDeclaredMethods(obj)) {
 			if (!method.isAccessible()) {
 				method.setAccessible(true);
 			}
+			
+			Object[] args = null;
+			
 			for (Parameter parameter : getParametersOfMethod(method)) {
-				
+				Annotation annotation = null;
+				int i = 0;
+				if (parameter.isAnnotationPresent(FillingInData.class)) {
+					annotation = parameter.getAnnotation(FillingInData.class);
+					FillingInData annotationValue = (FillingInData) annotation;
+					int paramsCount = annotationValue.numberOfParameters().getCount();
+					
+					Constructor<?> constructor = getConstructor(obj, paramsCount);
+					Object[] values = getParametersFromRequest(request, obj, annotationValue.listOfParameters());
+					
+					Object newObject = null;
+					if (paramsCount == values.length) {
+						newObject = constructor.newInstance(values);
+					} else {
+						throw new IllegalArgumentException();
+					}
+					
+					args[i] = newObject;
+					
+				} else {
+					args[i] = parameter.getClass().getClassLoader();
+				}
 			}
+			
+			method.invoke(obj, args);
 		}
-	}
-
-	
-
-	public Annotation getAnnotation(Object obj, Parameter parameter) {
-		Annotation[] annotations = parameter.getDeclaredAnnotations();
-		FillingInData annotValue = null;
-		for (Annotation annotation : annotations) {
-			if (annotation.annotationType() == FillingInData.class) {
-				annotValue = (FillingInData) annotation;
-			}
-		}
-		return annotValue;
 	}
 }
