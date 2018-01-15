@@ -15,7 +15,7 @@ public final class ValidationProcessor extends AnnotationProcessor {
 	
 	public ValidationProcessor() {}
 	
-	public static void validator(Object obj, Map<String, String> regexParameters)
+	public void validator(Object obj, Map<String, String> regexParameters)
 			throws Exception {
 		
 		Map<String, Object> fieldNameAndValue = getValuesFromEntity(obj);
@@ -35,10 +35,10 @@ public final class ValidationProcessor extends AnnotationProcessor {
 		}
 	}
 	
-	public static void chekAnnotation(Object obj, Class<? extends Annotation> clazz) 
+	public void chekAnnotation(Object obj, Class<? extends Annotation> clazz) 
 			throws Exception {
 		
-		for (Field field : Methods.getDeclaredFields(obj)) {
+		for (Field field : getDeclaredFields(obj)) {
 			if (field.isAnnotationPresent(clazz)) {
 				field.setAccessible(true);
 				validator(field.get(obj), ConstantValue.REGEX_PARAMETERS);
@@ -47,7 +47,7 @@ public final class ValidationProcessor extends AnnotationProcessor {
 		}
 	}
 	
-	public static Map<String, Object> getValuesFromEntity(Object obj) 
+	public Map<String, Object> getValuesFromEntity(Object obj) 
 			throws Exception {
 		
 		if (obj == null) {
@@ -56,7 +56,7 @@ public final class ValidationProcessor extends AnnotationProcessor {
 		
 		Map<String, Object> fieldNameAndValue = new ConcurrentHashMap<String, Object>();
 		
-		Field[] fields = Methods.getDeclaredFields(obj);
+		Field[] fields = getDeclaredFields(obj);
 		
 		for (Field field : fields) {
 			field.setAccessible(true);

@@ -26,13 +26,13 @@ public final class NewInstanceProcessor extends AnnotationProcessor {
 	private void checkOfField(Object obj) 
 			throws Exception {
 		
-		for (Field field : Methods.getDeclaredFields(obj)) {
+		for (Field field : getDeclaredFields(obj)) {
 			field.setAccessible(true);
 			
 			if (field.isAnnotationPresent(NewInstance.class)) {
 				try {
 
-					field.set(obj, Methods.getFieldClass(field).newInstance());
+					field.set(obj, getInstanceOfField(field).newInstance());
 				
 				} catch (IllegalAccessException e) {
 				

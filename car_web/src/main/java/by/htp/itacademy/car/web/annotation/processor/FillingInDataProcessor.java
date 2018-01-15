@@ -20,7 +20,7 @@ public final class FillingInDataProcessor extends AnnotationProcessor {
 	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj) 
 			throws Exception {
 		
-		for (Field field : obj.getClass().getDeclaredFields()) {
+		for (Field field : getDeclaredFields(obj)) {
 			if (field.isAnnotationPresent(FillingInData.class)) {
 				
 				if (!field.isAccessible()) {
@@ -56,29 +56,6 @@ public final class FillingInDataProcessor extends AnnotationProcessor {
 		return data;
 	}
 	
-	//There is the problem of choosing a constructor of class with an equal number of parameters.
-	Constructor<?> getConstructor(Object obj, ConstructorParametersEnum count) throws IllegalParameterException {
-		
-		if (obj == null) {
-			throw new IllegalParameterException("An object can not to be null!");
-		}
-
-		Constructor<?>[] constructors = obj.getClass().getConstructors();
-		Constructor<?> constructor = null;
-		
-		for (int i = 0; i < constructors.length; ++i) {
-			if (constructors[i].getParameterCount() == count.getCount()) {
-				constructor = constructors[i];
-			}
-		}
-		
-		if (constructor == null) {
-			throw new IllegalParameterException("A constructor with such a number of parameters does not exist!");
-		}
-		
-		return constructor;
-	}
-
 	public void getMethods(Object obj) throws Exception {
 
 		Method[] methods = obj.getClass().getDeclaredMethods();
