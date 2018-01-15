@@ -26,15 +26,11 @@ public class FillingInDateForParameterProcessor extends FillingInDataProcessor {
 			Object[] args = null;
 			
 			for (Parameter parameter : getParametersOfMethod(method)) {
-				Annotation annotation = null;
+
 				int i = 0;
 				if (parameter.isAnnotationPresent(FillingInData.class)) {
-					annotation = parameter.getAnnotation(FillingInData.class);
-					FillingInData annotationValue = (FillingInData) annotation;
-					int paramsCount = annotationValue.numberOfParameters().getCount();
 					
-					Constructor<?> constructor = getConstructor(obj, paramsCount);
-					Object[] values = getParametersFromRequest(request, obj, annotationValue.listOfParameters());
+					initValues(request, obj, parameter);
 					
 					Object newObject = null;
 					if (paramsCount == values.length) {
