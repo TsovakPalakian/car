@@ -4,20 +4,16 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import javax.servlet.http.HttpServletRequest;
+
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum;
+import by.htp.itacademy.car.web.annotation.util.RequestParametersEnum;
 
-abstract class AnnotationProcessor {
-
-	protected Constructor<?> getConstructorByEnum(Object obj, ConstructorParametersEnum paramCount)
-			throws IllegalParameterException, SecurityException, ClassNotFoundException {
-
-		return getConstructorByEnum(obj, paramCount.getCount());
-	}
+public abstract class AnnotationProcessor {
 
 	// There is the problem of choosing a constructor of class with an equal number
 	// of parameters.
-	protected Constructor<?> getConstructorByEnum(Object obj, int paramCount) 
+	protected Constructor<?> getConstructor(Object obj, int paramCount)
 			throws IllegalParameterException, SecurityException, ClassNotFoundException {
 
 		if (obj == null) {
@@ -40,13 +36,10 @@ abstract class AnnotationProcessor {
 		return constructor;
 	}
 
-	protected Class<?>[] getParameterTypesOfConstructorByEnum(Object obj, ConstructorParametersEnum paramCount)
-			throws IllegalParameterException, SecurityException, ClassNotFoundException {
-
-		return getParameterTypesOfConstructorByInt(obj, paramCount.getCount());
-	}
-
-	protected Class<?>[] getParameterTypesOfConstructorByInt(Object obj, int paramCount)
+	// There is the problem of choosing parameter types the constructor of a class
+	// with an equal number
+	// of parameters.
+	protected Class<?>[] getParameterTypesOfConstructor(Object obj, int paramCount)
 			throws IllegalParameterException, SecurityException, ClassNotFoundException {
 
 		if (obj == null) {
@@ -105,6 +98,19 @@ abstract class AnnotationProcessor {
 		}
 
 		return Class.forName(obj.getClass().getName()).getConstructors();
+	}
+
+	protected Object[] getParametersFromRequest(HttpServletRequest request, Object obj, RequestParametersEnum params) {
+
+		Object[] data = new Object[params.getList().size()];
+
+		int i = 0;
+		for (String value : params.getList()) {
+			data[i] = request.getParameter(value);
+			i++;
+		}
+
+		return data;
 	}
 
 }

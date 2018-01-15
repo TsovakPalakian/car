@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation.processor;
+package by.htp.itacademy.car.web.annotation.processor.fillingindata;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -9,13 +9,10 @@ import java.lang.reflect.Parameter;
 import javax.servlet.http.HttpServletRequest;
 
 import by.htp.itacademy.car.web.annotation.FillingInData;
-import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum;
+import by.htp.itacademy.car.web.annotation.processor.AnnotationProcessor;
 import by.htp.itacademy.car.web.annotation.util.RequestParametersEnum;
 
-public final class FillingInDataProcessor extends AnnotationProcessor {
-	
-	public FillingInDataProcessor() {}
+public abstract class FillingInDataProcessor extends AnnotationProcessor {
 	
 	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj) 
 			throws Exception {
@@ -30,8 +27,8 @@ public final class FillingInDataProcessor extends AnnotationProcessor {
 				Annotation annotation = field.getAnnotation(FillingInData.class);
 				FillingInData annotationValue = (FillingInData) annotation;
 				
-				Constructor<?> constructor = getConstructor(obj, annotationValue.numberOfParameters());
-				Object[] values = getParametersFromReques(request, obj, annotationValue.listOfParameters());
+				Constructor<?> constructor = getConstructor(obj, annotationValue.numberOfParameters().getCount());
+				Object[] values = getParametersFromRequest(request, obj, annotationValue.listOfParameters());
 				Object newObject = constructor.newInstance(values);
 				
 				field.set(obj, newObject);
@@ -41,19 +38,6 @@ public final class FillingInDataProcessor extends AnnotationProcessor {
 	
 	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj, RequestParametersEnum params) {
 		
-	}
-	
-	Object[] getParametersFromReques(HttpServletRequest request, Object obj, RequestParametersEnum params) {
-		
-		Object[] data = new Object[params.getList().size()];
-		
-		int i = 0;
-		for (String value : params.getList()) {
-			data[i] = request.getParameter(value);
-			i++;
-		}
-
-		return data;
 	}
 	
 	public void getMethods(Object obj) throws Exception {

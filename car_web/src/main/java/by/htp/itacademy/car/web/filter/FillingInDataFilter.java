@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.annotation.processor.FillingInDataProcessor;
+import by.htp.itacademy.car.web.annotation.processor.fillingindata.FillingInDataProcessor;
 import by.htp.itacademy.car.web.command.impl.LogInAction;
 import by.htp.itacademy.car.web.util.ConstantValue;
 
