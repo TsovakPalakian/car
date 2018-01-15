@@ -2,25 +2,25 @@ package by.htp.itacademy.car.web.annotation.util;
 
 public enum ConstructorParametersEnum {
 	
-	ZERO  ((byte) 0), 
-	ONE   ((byte) 1), 
-	TWO   ((byte) 2), 
-	THREE ((byte) 3), 
-	FOUR  ((byte) 4), 
-	FIVE  ((byte) 5), 
-	SIX   ((byte) 6), 
-	SEVEN ((byte) 7), 
-	EIGHT ((byte) 8), 
-	NINE  ((byte) 9), 
-	TEN   ((byte) 10);
+	ZERO  (0), 
+	ONE   (1), 
+	TWO   (2), 
+	THREE (3), 
+	FOUR  (4), 
+	FIVE  (5), 
+	SIX   (6), 
+	SEVEN (7), 
+	EIGHT (8), 
+	NINE  (9), 
+	TEN   (10);
 
-	private byte count;
+	private int count;
 	
-	ConstructorParametersEnum(byte count) {
+	ConstructorParametersEnum(int count) {
 		this.count = count;
 	}
 
-	public byte getCount() {
+	public int getCount() {
 		return count;
 	}
 }
