@@ -2,6 +2,7 @@ package by.htp.itacademy.car.web.annotation.processor.fillingindata;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,24 @@ public abstract class FillingInDataProcessor extends AnnotationProcessor {
 			throws SecurityException, ClassNotFoundException, IllegalParameterException {
 		
 		Annotation annotation = parameter.getAnnotation(FillingInData.class);
+		transferAnnotation(request, obj, annotation);
+	}
+	
+	protected void initValues(HttpServletRequest request, Object obj, Field field) 
+			throws SecurityException, ClassNotFoundException, IllegalParameterException {
+		
+		Annotation annotation = field.getAnnotation(FillingInData.class);
+		transferAnnotation(request, obj, annotation);
+	}
+	
+	private void transferAnnotation(HttpServletRequest request, Object obj, Annotation annotation) 
+			throws SecurityException, ClassNotFoundException, IllegalParameterException {
+		
 		FillingInData annotationValue = (FillingInData) annotation;
-		int paramsCount = annotationValue.numberOfParameters().getCount();
+		this.paramsCount = annotationValue.numberOfParameters().getCount();
 		RequestParametersEnum listOfParams = annotationValue.listOfParameters();
 		
-		Constructor<?> constructor = getConstructor(obj, paramsCount);
-		Object[] values = getParametersFromRequest(request, obj, listOfParams);
+		this.constructor = getConstructor(obj, this.paramsCount);
+		this.values = getParametersFromRequest(request, obj, listOfParams);
 	}
 }

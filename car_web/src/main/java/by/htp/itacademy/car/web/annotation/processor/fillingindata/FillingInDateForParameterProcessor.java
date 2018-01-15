@@ -1,7 +1,5 @@
 package by.htp.itacademy.car.web.annotation.processor.fillingindata;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -23,9 +21,10 @@ public class FillingInDateForParameterProcessor extends FillingInDataProcessor {
 				method.setAccessible(true);
 			}
 			
-			Object[] args = null;
+			Parameter[] parameters = getParametersOfMethod(method);
+			Object[] methodValues = new Object[parameters.length];
 			
-			for (Parameter parameter : getParametersOfMethod(method)) {
+			for (Parameter parameter : parameters) {
 
 				int i = 0;
 				if (parameter.isAnnotationPresent(FillingInData.class)) {
@@ -39,14 +38,13 @@ public class FillingInDateForParameterProcessor extends FillingInDataProcessor {
 						throw new IllegalArgumentException();
 					}
 					
-					args[i] = newObject;
-					
+					methodValues[i++] = newObject;
 				} else {
-					args[i] = parameter.getClass().getClassLoader();
+					methodValues[i++] = parameter.getClass().getClassLoader();
 				}
 			}
 			
-			method.invoke(obj, args);
+			method.invoke(obj, methodValues);
 		}
 	}
 }
