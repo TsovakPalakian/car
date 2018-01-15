@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.htp.connector.DatabaseConnectionException;
-import by.htp.itacademy.car.dao.connector.ConnectionPool;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.command.EnumAction;
 import by.htp.itacademy.car.web.util.ResponseValue;
@@ -51,16 +49,4 @@ public class Controller extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(responseValue.getPageResponse());
 		dispatcher.forward(request, response);
 	}
-
-	@Override
-	public void destroy() {
-		super.destroy();
-		try {
-			ConnectionPool.getInstance().close();
-		} catch (DatabaseConnectionException e) {
-			log.error("The connections have not been closed! " + e.getMessage());
-		}
-	}
-	
-	
 }
