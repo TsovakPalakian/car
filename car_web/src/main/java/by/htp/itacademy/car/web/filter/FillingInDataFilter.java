@@ -9,10 +9,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.annotation.processor.fillingindata.FillingInDataProcessor;
+import by.htp.itacademy.car.web.annotation.processor.fillingindata.FillingInDataForFieldProcessor;
+import by.htp.itacademy.car.web.annotation.processor.fillingindata.FillingInDataForParameterProcessor;
 import by.htp.itacademy.car.web.command.impl.LogInAction;
-import by.htp.itacademy.car.web.util.ConstantValue;
 
 public class FillingInDataFilter implements Filter {
 
@@ -20,11 +20,13 @@ public class FillingInDataFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		FillingInDataProcessor fill = new FillingInDataProcessor();
+		FillingInDataProcessor fillingParams = new FillingInDataForParameterProcessor();
+		FillingInDataProcessor fillingFields = new FillingInDataForFieldProcessor();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 			
 		try {
-			fill.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
+			fillingParams.fillingInDataFromFormForParameters(httpRequest, LogInAction.getInstance());
+			fillingFields.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
 		} catch (Exception e) {
 
 		}

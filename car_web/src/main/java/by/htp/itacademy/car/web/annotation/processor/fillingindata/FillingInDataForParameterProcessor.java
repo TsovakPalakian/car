@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import by.htp.itacademy.car.web.annotation.FillingInData;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.annotation.util.RequestParametersEnum;
 
-public class FillingInDateForParameterProcessor extends FillingInDataProcessor {
+public class FillingInDataForParameterProcessor extends FillingInDataProcessor {
 
-	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj, RequestParametersEnum params)
+	@Override
+	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj)
 			throws IllegalParameterException, IllegalAccessException, IllegalArgumentException, 
 				InvocationTargetException, SecurityException, ClassNotFoundException, InstantiationException {
 		
@@ -46,5 +46,12 @@ public class FillingInDateForParameterProcessor extends FillingInDataProcessor {
 			
 			method.invoke(obj, methodValues);
 		}
+	}
+
+	@Override
+	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj)
+			throws SecurityException, ClassNotFoundException, IllegalParameterException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		
 	}
 }

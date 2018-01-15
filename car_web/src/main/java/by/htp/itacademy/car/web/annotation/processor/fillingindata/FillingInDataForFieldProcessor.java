@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import by.htp.itacademy.car.web.annotation.FillingInData;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 
-public class FillingInDateForFieldProcessor extends FillingInDataProcessor {
+public class FillingInDataForFieldProcessor extends FillingInDataProcessor {
 	
 	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj) 
 			throws SecurityException, ClassNotFoundException, IllegalParameterException, InstantiationException, 
@@ -30,5 +30,13 @@ public class FillingInDateForFieldProcessor extends FillingInDataProcessor {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj)
+			throws IllegalParameterException, IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, SecurityException, ClassNotFoundException, InstantiationException {
+		// TODO Auto-generated method stub
+		
 	}
 }

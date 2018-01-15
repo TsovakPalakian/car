@@ -1,12 +1,13 @@
-package by.htp.itacademy.car.web.annotation.processor;
+package by.htp.itacademy.car.web.annotation.processor.newinstance;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import by.htp.itacademy.car.web.annotation.NewInstance;
+import by.htp.itacademy.car.web.annotation.processor.AnnotationProcessor;
 
-public final class NewInstanceProcessor extends AnnotationProcessor {
+public abstract class NewInstanceProcessor extends AnnotationProcessor {
 	
 	private static final String NEW_INSTANCE_METHOD_NAME = "getInstance";
 	

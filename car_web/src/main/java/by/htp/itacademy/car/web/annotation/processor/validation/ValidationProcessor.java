@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation.processor;
+package by.htp.itacademy.car.web.annotation.processor.validation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -9,9 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.web.annotation.processor.AnnotationProcessor;
 import by.htp.itacademy.car.web.util.ConstantValue;
 
-public final class ValidationProcessor extends AnnotationProcessor {
+public abstract class ValidationProcessor extends AnnotationProcessor {
 	
 	public ValidationProcessor() {}
 	

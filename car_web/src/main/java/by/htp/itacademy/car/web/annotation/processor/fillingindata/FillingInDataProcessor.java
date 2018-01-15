@@ -3,6 +3,7 @@ package by.htp.itacademy.car.web.annotation.processor.fillingindata;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,4 +43,12 @@ public abstract class FillingInDataProcessor extends AnnotationProcessor {
 		this.constructor = getConstructor(obj, this.paramsCount);
 		this.values = getParametersFromRequest(request, obj, listOfParams);
 	}
+	
+	public abstract void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj)
+			throws IllegalParameterException, IllegalAccessException, IllegalArgumentException, 
+			InvocationTargetException, SecurityException, ClassNotFoundException, InstantiationException;
+	
+	public abstract void fillingInDataFromFormForFields(HttpServletRequest request, Object obj) 
+			throws SecurityException, ClassNotFoundException, IllegalParameterException, InstantiationException, 
+				IllegalAccessException, IllegalArgumentException, InvocationTargetException;
 }
