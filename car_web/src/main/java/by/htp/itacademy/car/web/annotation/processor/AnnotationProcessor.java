@@ -1,11 +1,14 @@
 package by.htp.itacademy.car.web.annotation.processor;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
 
+import by.htp.itacademy.car.web.annotation.FillingInData;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.annotation.util.RequestParametersEnum;
 
@@ -113,4 +116,23 @@ public abstract class AnnotationProcessor {
 		return data;
 	}
 
+	protected Parameter[] getParametersOfMethod(Method method) 
+			throws IllegalParameterException {
+		
+		if (method == null) {
+			throw new IllegalParameterException("A method can not be null!");
+		}
+		
+		return method.getParameters();
+	}
+	
+	protected Annotation[] getDeclaredAnnotationsOfParameter(Parameter parameter) 
+			throws IllegalParameterException {
+		
+		if (parameter == null) {
+			throw new IllegalParameterException("A parameter can not be null!");
+		}
+		
+		return parameter.getDeclaredAnnotations();
+	}
 }
