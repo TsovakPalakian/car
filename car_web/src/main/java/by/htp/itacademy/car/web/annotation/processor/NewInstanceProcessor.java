@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 
 import by.htp.itacademy.car.web.annotation.NewInstance;
 
-public final class NewInstanceProcessor implements AnnotationProcessor {
+public final class NewInstanceProcessor extends AnnotationProcessor {
 	
 	private static final String NEW_INSTANCE_METHOD_NAME = "getInstance";
 	

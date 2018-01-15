@@ -1,7 +1,5 @@
 package by.htp.itacademy.car.web.command.impl;
 
-import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.TWO;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +13,9 @@ import by.htp.itacademy.car.web.annotation.NewInstance;
 import by.htp.itacademy.car.web.annotation.Validation;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
+
+import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.TWO;
+import static by.htp.itacademy.car.web.annotation.util.RequestParametersEnum.LOG_IN;;
 
 public class LogInAction implements Action {
 
@@ -52,7 +53,7 @@ public class LogInAction implements Action {
 
 	private void fillingInData(
 
-			@FillingInData(name = "form", numberOfParameters = TWO) 
+			@FillingInData(name = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
 			@Validation User user) {
 		
 		this.user = user;

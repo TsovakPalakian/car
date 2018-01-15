@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.web.util.ConstantValue;
 
-public final class ValidationProcessor implements AnnotationProcessor {
+public final class ValidationProcessor extends AnnotationProcessor {
 	
 	public ValidationProcessor() {}
 	
