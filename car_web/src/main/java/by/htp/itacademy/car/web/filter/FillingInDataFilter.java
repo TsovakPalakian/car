@@ -20,6 +20,8 @@ public class FillingInDataFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
+		System.out.println("FillingInDataFilter");
+		
 		FillingInDataProcessor fillingParams = new FillingInDataForParameterProcessor();
 		FillingInDataProcessor fillingFields = new FillingInDataForFieldProcessor();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -28,7 +30,7 @@ public class FillingInDataFilter implements Filter {
 			fillingParams.fillingInDataFromFormForParameters(httpRequest, LogInAction.getInstance());
 			fillingFields.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 }

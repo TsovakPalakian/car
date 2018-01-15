@@ -9,6 +9,15 @@
 	</welcome-file-list>
 	
 	<filter>
+		<filter-name>FillingInDataFilter</filter-name>
+		<filter-class>by.htp.itacademy.car.web.filter.FillingInDataFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter>
 		<filter-name>CommandFilter</filter-name>
 		<filter-class>by.htp.itacademy.car.web.filter.CommandFilter</filter-class>
 		<init-param>
@@ -26,6 +35,10 @@
 		</init-param>
 	</filter>
 	
+	<filter-mapping>
+		<filter-name>FillingInDataFilter</filter-name>
+		<url-pattern>/Controller</url-pattern>
+	</filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>CommandFilter</filter-name>
