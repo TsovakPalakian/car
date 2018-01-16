@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	private EntityDao dao;
 	
 	private UserServiceImpl() {
-		dao = UserDaoImpl.getInstance();
+		//dao = UserDaoImpl.getInstance();
 	}
 
 	private static class Singletone {

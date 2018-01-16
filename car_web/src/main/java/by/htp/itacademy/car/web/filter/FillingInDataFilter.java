@@ -14,6 +14,7 @@ import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInD
 import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataForParameterProcessor;
 import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataProcessor;
 import by.htp.itacademy.car.domain.annotation.processor.newinstance.NewInstanceProcessor;
+import by.htp.itacademy.car.service.impl.UserServiceImpl;
 import by.htp.itacademy.car.web.command.impl.LogInAction;
 
 public class FillingInDataFilter implements Filter {
@@ -26,13 +27,16 @@ public class FillingInDataFilter implements Filter {
 		
 		FillingInDataProcessor fillingParams = new FillingInDataForParameterProcessor();
 		FillingInDataProcessor fillingFields = new FillingInDataForFieldProcessor();
+		
 		NewInstanceProcessor newInstancePro = new NewInstanceProcessor();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 			
 		System.out.println("request parameter : " + httpRequest.getParameter("login"));
 		try {
-			newInstancePro.newInstance(LogInAction.getInstance());
-			fillingParams.fillingInDataFromFormForParameters(httpRequest, LogInAction.getInstance());
+			newInstancePro.newInstance(UserServiceImpl.getInstance());
+			//newInstancePro.newInstance(LogInAction.getInstance());
+			//newInstancePro.newInstance(UserServiceImpl.getInstance());
+			//fillingParams.fillingInDataFromFormForParameters(httpRequest, LogInAction.getInstance());
 			//fillingFields.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
 		} catch (Exception e) {
 			e.printStackTrace();
