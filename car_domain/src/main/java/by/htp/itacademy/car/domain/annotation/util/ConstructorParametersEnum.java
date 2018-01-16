@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation.util;
+package by.htp.itacademy.car.domain.annotation.util;
 
 public enum ConstructorParametersEnum {
 	

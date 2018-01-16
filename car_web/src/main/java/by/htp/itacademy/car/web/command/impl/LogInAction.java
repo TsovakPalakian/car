@@ -4,18 +4,19 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.htp.itacademy.car.domain.annotation.Cryptographer;
+import by.htp.itacademy.car.domain.annotation.FillingInData;
+import by.htp.itacademy.car.domain.annotation.NewInstance;
+import by.htp.itacademy.car.domain.annotation.Validation;
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
 import by.htp.itacademy.car.service.exception.ServiceNoSuchUserException;
-import by.htp.itacademy.car.web.annotation.Cryptographer;
-import by.htp.itacademy.car.web.annotation.FillingInData;
-import by.htp.itacademy.car.web.annotation.NewInstance;
-import by.htp.itacademy.car.web.annotation.Validation;
+import by.htp.itacademy.car.service.impl.UserServiceImpl;
 import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
 
-import static by.htp.itacademy.car.web.annotation.util.ConstructorParametersEnum.TWO;
-import static by.htp.itacademy.car.web.annotation.util.RequestParametersEnum.LOG_IN;;
+import static by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum.TWO;
+import static by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum.LOG_IN;;
 
 public class LogInAction implements Action {
 
@@ -25,7 +26,7 @@ public class LogInAction implements Action {
 	
 	private User user;
 	
-	@NewInstance
+	@NewInstance(clazz = UserServiceImpl.class)
 	private UserService userService;
 
 	private LogInAction() {
@@ -42,15 +43,16 @@ public class LogInAction implements Action {
 	@Override
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
 
-		ResponseValue responseValue = new ResponseValue(true);
+		ResponseValue responseValue = null;
 		//responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 		//request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
 		fillingInData(this.user);
 
-		authorisationUser(request, response, this.user);
-		return null;
+		responseValue = authorisationUser(request, response, this.user);
+		return responseValue;
 	}
 
+	@FillingInData
 	private void fillingInData(
 
 			@FillingInData(name = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
@@ -64,6 +66,7 @@ public class LogInAction implements Action {
 
 		ResponseValue responseValue = new ResponseValue(true);
 		try {
+			System.out.println("userService : " + userService);
 			user = userService.logIn(user);
 			inputCookie(response, user);
 
@@ -87,4 +90,9 @@ public class LogInAction implements Action {
 		response.addCookie(new Cookie("logIn", user.getLogin()));
 		response.addCookie(new Cookie("password", user.getPassword()));
 	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+	
 }

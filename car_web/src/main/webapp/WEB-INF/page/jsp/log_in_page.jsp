@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%--<%@ taglib uri="/WEB-INF/outputCookieDataTag.tld" prefix="fdl" --%>
+<%@ taglib uri="/WEB-INF/outputCookieDataTag.tld" prefix="fdl"%>
 <html>
 <head>
 	<meta charset="utf-8">
-	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
-	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
-	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="web/css/login.css" rel="stylesheet" type="text/css" />
+	<link href="web/css/menu.css" rel="stylesheet" type="text/css" />
+	<link href="web/css/footer.css" rel="stylesheet" type="text/css" />
 	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Log in</title>
 </head>

@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.sqlbuilder.exception;
+package by.htp.itacademy.car.sqlbuilder.exception;
 
 @SuppressWarnings("serial")
 public class IncorrectQueryException extends Exception {

@@ -5,6 +5,7 @@ import java.util.List;
 import by.htp.itacademy.car.dao.EntityDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.dao.impl.UserDaoImpl;
+import by.htp.itacademy.car.domain.annotation.NewInstance;
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
 import by.htp.itacademy.car.service.exception.ServiceException;
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
 	private static final Integer FIRST_ELEMENT_FROM_LIST_OF_USERS = 0;
 	private static final String LOG_ERROR = " ERROR: ";
 	
+	@NewInstance(clazz = UserDaoImpl.class)
 	private EntityDao dao;
 	
 	private UserServiceImpl() {
@@ -34,6 +36,8 @@ public class UserServiceImpl implements UserService {
 	public User logIn(User user) throws ServiceNoSuchUserException {
 		User userFromDB = null;
 		try {
+			System.out.println("1 : " + dao);
+			System.out.println("2 : " + dao.select(user));
 			userFromDB = (User) dao.select(user).get(FIRST_ELEMENT_FROM_LIST_OF_USERS);
 			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getUserId());
 		} catch (DaoException e) {

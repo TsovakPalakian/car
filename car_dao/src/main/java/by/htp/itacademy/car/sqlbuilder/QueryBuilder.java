@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.sqlbuilder;
+package by.htp.itacademy.car.sqlbuilder;
 
 public class QueryBuilder {
 	

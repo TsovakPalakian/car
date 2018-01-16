@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.util;
+package by.htp.itacademy.car.domain.annotation.util;
 
 import java.util.LinkedList;
 import java.util.List;

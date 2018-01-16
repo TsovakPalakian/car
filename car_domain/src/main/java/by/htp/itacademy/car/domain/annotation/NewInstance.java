@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation;
+package by.htp.itacademy.car.domain.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -10,4 +10,8 @@ import static java.lang.annotation.ElementType.*;
 @Documented
 @Target({FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NewInstance {}
+public @interface NewInstance {
+	
+	Class<?> clazz();
+
+}

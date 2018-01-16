@@ -1,8 +1,8 @@
-package by.htp.itacademy.car.web.sqlbuilder.delete;
+package by.htp.itacademy.car.sqlbuilder.delete;
 
 import by.htp.itacademy.car.domain.entity.Entity;
-import by.htp.itacademy.car.web.sqlbuilder.Query;
-import by.htp.itacademy.car.web.sqlbuilder.QueryBuilder;
+import by.htp.itacademy.car.sqlbuilder.Query;
+import by.htp.itacademy.car.sqlbuilder.QueryBuilder;
 
 public final class Delete extends QueryBuilder {
 	

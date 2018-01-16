@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation.processor;
+package by.htp.itacademy.car.domain.annotation.processor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -8,21 +8,25 @@ import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.annotation.util.RequestParametersEnum;
+import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum;
 
 public abstract class AnnotationProcessor {
 
 	// There is the problem of choosing a constructor of class with an equal number
 	// of parameters.
-	protected Constructor<?> getConstructor(Object obj, int paramCount)
+	protected Constructor<?> getConstructor(Class<?> clazz, int paramCount)
 			throws IllegalParameterException, SecurityException, ClassNotFoundException {
 
-		if (obj == null) {
+		System.out.println(clazz);
+		if (clazz == null) {
 			throw new IllegalParameterException("An object can not to be null!");
 		}
-
-		Constructor<?>[] constructors = getConstructors(obj);
+		System.out.println("obj " + clazz);
+		Constructor<?>[] constructors = getConstructors(clazz);
+		for (Constructor<?> con : constructors) {
+			System.out.println(con);
+		}
 		Constructor<?> constructor = null;
 
 		for (int i = 0; i < constructors.length; ++i) {
@@ -34,6 +38,8 @@ public abstract class AnnotationProcessor {
 		if (constructor == null) {
 			throw new IllegalParameterException("A constructor with such a number of parameters does not exist!");
 		}
+		
+		System.out.println(constructor.getName() + " : " + constructor.getParameterCount());
 
 		return constructor;
 	}
@@ -41,14 +47,14 @@ public abstract class AnnotationProcessor {
 	// There is the problem of choosing parameter types the constructor of a class
 	// with an equal number
 	// of parameters.
-	protected Class<?>[] getParameterTypesOfConstructor(Object obj, int paramCount)
+	protected Class<?>[] getParameterTypesOfConstructor(Class<?> clazz, int paramCount)
 			throws IllegalParameterException, SecurityException, ClassNotFoundException {
 
-		if (obj == null) {
+		if (clazz == null) {
 			throw new IllegalParameterException("An object can not to be null!");
 		}
 
-		Constructor<?>[] constructors = getConstructors(obj);
+		Constructor<?>[] constructors = getConstructors(clazz);
 
 		Class<?>[] parameterTypes = null;
 
@@ -83,26 +89,42 @@ public abstract class AnnotationProcessor {
 		return obj.getClass().getDeclaredMethods();
 	}
 
-	protected Class<?> getInstanceOfField(Field field) throws ClassNotFoundException, IllegalParameterException {
+	protected Class<?> getInstanceOfField(Field field) 
+			throws ClassNotFoundException, IllegalParameterException, 
+				IllegalArgumentException, IllegalAccessException {
 
 		if (field == null) {
 			throw new IllegalParameterException("A field can not to be null!");
 		}
-
-		return Class.forName(field.getType().getName());
+		
+		Class<?> clazz = Class.forName(field.getType().getName());
+		return clazz;
 	}
-
-	protected Constructor<?>[] getConstructors(Object obj)
+	
+	protected Object getInstanceOfClass(Class<?> clazz) 
+			throws IllegalParameterException, InstantiationException, IllegalAccessException {
+		
+		if (clazz == null) {
+			throw new IllegalParameterException("A class can not to be null!");
+		}
+		
+		return clazz.newInstance();
+	}
+	
+	protected Constructor<?>[] getConstructors(Class<?> clazz)
 			throws IllegalParameterException, SecurityException, ClassNotFoundException {
 
-		if (obj == null) {
+		if (clazz == null) {
 			throw new IllegalParameterException("An object can not to be null!");
 		}
-
-		return Class.forName(obj.getClass().getName()).getConstructors();
+		System.out.println(clazz);
+		System.out.println(clazz.getClass());
+		System.out.println(clazz.getClass().getTypeName());
+		System.out.println(clazz.getClass().getName());
+		return clazz.getConstructors();
 	}
 
-	protected Object[] getParametersFromRequest(HttpServletRequest request, Object obj, RequestParametersEnum params) {
+	protected Object[] getParametersFromRequest(HttpServletRequest request, RequestParametersEnum params) {
 
 		Object[] data = new Object[params.getList().size()];
 
@@ -111,7 +133,11 @@ public abstract class AnnotationProcessor {
 			data[i] = request.getParameter(value);
 			i++;
 		}
-
+		
+		for (Object obje : data) {
+			System.out.println(obje);
+		}
+		
 		return data;
 	}
 

@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation.processor.validation;
+package by.htp.itacademy.car.domain.annotation.processor.validation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -8,9 +8,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.annotation.processor.AnnotationProcessor;
-import by.htp.itacademy.car.web.util.ConstantValue;
+import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
+import by.htp.itacademy.car.domain.annotation.util.ConstantValue;
 
 public abstract class ValidationProcessor extends AnnotationProcessor {
 	
@@ -44,7 +44,6 @@ public abstract class ValidationProcessor extends AnnotationProcessor {
 				field.setAccessible(true);
 				validator(field.get(obj), ConstantValue.REGEX_PARAMETERS);
 			}
-			
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.annotation.processor.fillingindata;
+package by.htp.itacademy.car.domain.annotation.processor.fillingindata;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -6,8 +6,8 @@ import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.web.annotation.FillingInData;
-import by.htp.itacademy.car.web.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.domain.annotation.FillingInData;
+import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
 
 public class FillingInDataForParameterProcessor extends FillingInDataProcessor {
 
@@ -21,15 +21,26 @@ public class FillingInDataForParameterProcessor extends FillingInDataProcessor {
 				method.setAccessible(true);
 			}
 			
+			checkAnnotationAndInvokeMethod(request, obj, method);
+			
+		}
+	}
+	
+	private void checkAnnotationAndInvokeMethod(HttpServletRequest request, Object obj, Method method) 
+			throws IllegalParameterException, SecurityException, ClassNotFoundException, InstantiationException,
+				IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Object[] methodValues = null;
+		
+		if (method.isAnnotationPresent(FillingInData.class)) {
 			Parameter[] parameters = getParametersOfMethod(method);
-			Object[] methodValues = new Object[parameters.length];
+			methodValues = new Object[parameters.length];
 			
 			for (Parameter parameter : parameters) {
 
 				int i = 0;
 				if (parameter.isAnnotationPresent(FillingInData.class)) {
-					
-					initValues(request, obj, parameter);
+					System.out.println(parameter);
+					initValues(request, parameter.getType(), parameter);
 					
 					Object newObject = null;
 					if (paramsCount == values.length) {
@@ -43,15 +54,7 @@ public class FillingInDataForParameterProcessor extends FillingInDataProcessor {
 					methodValues[i++] = parameter.getClass().getClassLoader();
 				}
 			}
-			
 			method.invoke(obj, methodValues);
 		}
-	}
-
-	@Override
-	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj)
-			throws SecurityException, ClassNotFoundException, IllegalParameterException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		
 	}
 }

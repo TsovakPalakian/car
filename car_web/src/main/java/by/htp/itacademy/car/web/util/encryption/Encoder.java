@@ -1,8 +1,8 @@
 package by.htp.itacademy.car.web.util.encryption;
 
-public class Encryptor extends CipherMachine {
+public class Encoder extends CipherMachine {
 	
-	private Encryptor() {}
+	private Encoder() {}
 	
 	private String getEncryptData(int[] dataArrayInt, int[] keyArrayInt) {
 		char[] dataEncryptArrayChar = new char[dataLength];

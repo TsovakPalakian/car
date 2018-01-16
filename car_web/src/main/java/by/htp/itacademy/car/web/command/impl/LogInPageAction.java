@@ -22,6 +22,6 @@ public class LogInPageAction  implements Action {
 	
 	@Override
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
-		return null;
+		return new ResponseValue("/WEB-INF/page/jsp/log_in_page.jsp", false);
 	}
 }

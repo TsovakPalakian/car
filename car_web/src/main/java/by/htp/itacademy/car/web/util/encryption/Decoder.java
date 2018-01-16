@@ -1,8 +1,8 @@
 package by.htp.itacademy.car.web.util.encryption;
 
-public class Decryptor extends CipherMachine {
+public class Decoder extends CipherMachine {
 
-	private Decryptor() {}
+	public Decoder() {}
 	
 	private String getDecryptData(int[] dataArrayInt, int[] keyArrayInt) {
 		char[] dataDecryptArrayChar = new char[dataArrayInt.length];
