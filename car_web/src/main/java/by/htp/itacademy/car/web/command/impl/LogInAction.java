@@ -32,8 +32,6 @@ public class LogInAction implements Action {
 		return Singletone.INSTANCE;
 	}
 	
-	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
-
 	@Validation
 	@FillingInData(from = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
 	private User user;
@@ -59,23 +57,23 @@ public class LogInAction implements Action {
 			inputCookie(response, user);
 
 			if (user.getRole() == 0) {
-				request.getSession().setAttribute("user", user);
-				request.setAttribute("user", request.getSession().getAttribute("user"));
+				request.getSession().setAttribute(SESSION_ATTRIBUTE_USER, user);
+				request.setAttribute(REQUEST_ATTRIBUTE_USER, request.getSession().getAttribute(SESSION_ATTRIBUTE_USER));
 			} else if (user.getRole() == 1) {
 				request.getSession().setAttribute("admin", user);
-				request.setAttribute("admin", request.getSession().getAttribute("admin"));
+				request.setAttribute(REQUEST_ATTRIBUTE_ADMIN, request.getSession().getAttribute(SESSION_ATTRIBUTE_ADMIN));
 			}
 			responseValue.setPageResponse(PAGE_LOG_IN);
 		} catch (ServiceNoSuchUserException e) {
 			responseValue.setPageResponse(PAGE_LOG_IN);
-			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
+			request.setAttribute(REQUEST_ATTRIBUTE_MSG_NAME, REQUEST_ATTRIBUTE_MSG_VALUE);
 			return responseValue;
 		}
 		return responseValue;
 	}
 
 	private void inputCookie(HttpServletResponse response, User user) {
-		response.addCookie(new Cookie("logIn", user.getLogin()));
-		response.addCookie(new Cookie("password", user.getPassword()));
+		response.addCookie(new Cookie(COOKIE_NAME_LOGIN, user.getLogin()));
+		response.addCookie(new Cookie(COOKIE_NAME_PASSWORD, user.getPassword()));
 	}	
 }

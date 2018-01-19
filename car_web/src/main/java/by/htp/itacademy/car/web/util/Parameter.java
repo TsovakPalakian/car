@@ -10,8 +10,12 @@ public final class Parameter {
 	public static final String SESSION_ATTRIBUTE_ADMIN = "admin";
 	public static final String REQUEST_ATTRIBUTE_ADMIN = "admin";
 	public static final String PAGE_HOME = "jsp/home_page.jsp";
-	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
+	public static final String REQUEST_ATTRIBUTE_MSG_NAME = "msg";
+	public static final String REQUEST_ATTRIBUTE_MSG_VALUE = "There is no user with such login!";
 	
 	public static final String MESSAGE_NO_ACCESS = "Sorry, but you do not have access to this page!";
+	
+	public static final String COOKIE_NAME_LOGIN = "login";
+	public static final String COOKIE_NAME_PASSWORD = "password";
 	
 }
