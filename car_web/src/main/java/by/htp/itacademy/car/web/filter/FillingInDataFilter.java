@@ -9,14 +9,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
+import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataForFieldProcessor;
-import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataForParameterProcessor;
 import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataProcessor;
 import by.htp.itacademy.car.domain.annotation.processor.newinstance.NewInstanceProcessor;
 import by.htp.itacademy.car.domain.annotation.processor.validation.ValidationProcessor;
-import by.htp.itacademy.car.service.impl.UserServiceImpl;
 import by.htp.itacademy.car.web.command.impl.LogInAction;
+
+import static by.htp.itacademy.car.web.util.Parameter.*;
 
 public class FillingInDataFilter implements Filter {
 
@@ -44,6 +44,9 @@ public class FillingInDataFilter implements Filter {
 			fillingFields.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
 			validationProcessor.chekAnnotation(LogInAction.getInstance());
 			
+		}catch (IllegalParameterException e) {
+			//responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
+			request.setAttribute(REQUEST_ATTRIBUTE_MSG, MESSAGE_INCORRECT_DATA_ENTRY);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

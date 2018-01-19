@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import by.htp.itacademy.car.domain.entity.User;
 
+import static by.htp.itacademy.car.web.util.AddressPage.*;
 import static by.htp.itacademy.car.web.util.Parameter.*;
 
 public class CommandFilter implements Filter {
