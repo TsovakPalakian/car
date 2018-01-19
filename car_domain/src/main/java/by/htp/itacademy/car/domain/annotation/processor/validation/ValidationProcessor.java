@@ -1,6 +1,5 @@
 package by.htp.itacademy.car.domain.annotation.processor.validation;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,6 +11,7 @@ import by.htp.itacademy.car.domain.annotation.Validation;
 import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
 import by.htp.itacademy.car.domain.annotation.util.ConstantValue;
+import by.htp.itacademy.car.domain.entity.Entity;
 
 public abstract class ValidationProcessor extends AnnotationProcessor {
 	
@@ -24,15 +24,15 @@ public abstract class ValidationProcessor extends AnnotationProcessor {
 		for (Field field : getDeclaredFields(obj)) {
 			if (field.isAnnotationPresent(Validation.class)) {
 				field.setAccessible(true);
-				validator(field.get(obj), ConstantValue.REGEX_PARAMETERS);
+				validator((Entity) field.get(obj), ConstantValue.REGEX_PARAMETERS);
 			}
 		}
 	}
 	
-	public void validator(Object obj, Map<String, String> regexParameters)
+	private void validator(Entity entity, Map<String, String> regexParameters)
 			throws Exception {
 		
-		Map<String, Object> fieldNameAndValue = getValuesFromEntity(obj);
+		Map<String, Object> fieldNameAndValue = getValuesFromEntity(entity);
 		
 		for (Entry<String, String> regex : regexParameters.entrySet()) {
 			for (Entry<String, Object> value : fieldNameAndValue.entrySet()) {
@@ -49,21 +49,21 @@ public abstract class ValidationProcessor extends AnnotationProcessor {
 		}
 	}
 	
-	public Map<String, Object> getValuesFromEntity(Object obj) 
+	private Map<String, Object> getValuesFromEntity(Entity entity) 
 			throws Exception {
 		
-		if (obj == null) {
+		if (entity == null) {
 			throw new IllegalArgumentException(); 
 		}
 		
 		Map<String, Object> fieldNameAndValue = new ConcurrentHashMap<String, Object>();
 		
-		Field[] fields = getDeclaredFields(obj);
+		Field[] fields = getDeclaredFields(entity);
 		
 		for (Field field : fields) {
 			field.setAccessible(true);
-			if (field.get(obj) != null) {
-				fieldNameAndValue.put(field.getName(), field.get(obj)); 
+			if (field.get(entity) != null) {
+				fieldNameAndValue.put(field.getName(), field.get(entity)); 
 			}
 		}
 		return fieldNameAndValue;
