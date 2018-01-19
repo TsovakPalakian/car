@@ -16,7 +16,9 @@ import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
 
 import static by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum.TWO;
-import static by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum.LOG_IN;;
+import static by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum.LOG_IN;
+import static by.htp.itacademy.car.web.util.AddressPage.*;
+import static by.htp.itacademy.car.web.util.Parameter.*;
 
 public class LogInAction implements Action {
 
@@ -31,7 +33,6 @@ public class LogInAction implements Action {
 	}
 	
 	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
-	private static final String REQUEST_ATTRIBUTE_MSG = "msg";
 
 	@Validation
 	@FillingInData(from = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
@@ -64,9 +65,9 @@ public class LogInAction implements Action {
 				request.getSession().setAttribute("admin", user);
 				request.setAttribute("admin", request.getSession().getAttribute("admin"));
 			}
-			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
+			responseValue.setPageResponse(PAGE_LOG_IN);
 		} catch (ServiceNoSuchUserException e) {
-			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
+			responseValue.setPageResponse(PAGE_LOG_IN);
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
 			return responseValue;
 		}
