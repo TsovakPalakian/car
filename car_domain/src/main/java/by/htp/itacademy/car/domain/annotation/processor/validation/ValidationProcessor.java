@@ -11,9 +11,8 @@ import by.htp.itacademy.car.domain.annotation.Validation;
 import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
 import by.htp.itacademy.car.domain.annotation.util.ConstantValue;
-import by.htp.itacademy.car.domain.entity.Entity;
 
-public abstract class ValidationProcessor extends AnnotationProcessor {
+public class ValidationProcessor extends AnnotationProcessor {
 	
 	public ValidationProcessor() {}
 	
@@ -24,15 +23,15 @@ public abstract class ValidationProcessor extends AnnotationProcessor {
 		for (Field field : getDeclaredFields(obj)) {
 			if (field.isAnnotationPresent(Validation.class)) {
 				field.setAccessible(true);
-				validator((Entity) field.get(obj), ConstantValue.REGEX_PARAMETERS);
+				validator(field.get(obj), ConstantValue.REGEX_PARAMETERS);
 			}
 		}
 	}
 	
-	private void validator(Entity entity, Map<String, String> regexParameters)
+	private <T> void validator(T t, Map<String, String> regexParameters)
 			throws Exception {
 		
-		Map<String, Object> fieldNameAndValue = getValuesFromEntity(entity);
+		Map<String, Object> fieldNameAndValue = getFieldNameAndValue(t);
 		
 		for (Entry<String, String> regex : regexParameters.entrySet()) {
 			for (Entry<String, Object> value : fieldNameAndValue.entrySet()) {
@@ -49,21 +48,21 @@ public abstract class ValidationProcessor extends AnnotationProcessor {
 		}
 	}
 	
-	private Map<String, Object> getValuesFromEntity(Entity entity) 
+	private <T> Map<String, Object> getFieldNameAndValue(T t) 
 			throws Exception {
 		
-		if (entity == null) {
+		if (t == null) {
 			throw new IllegalArgumentException(); 
 		}
 		
 		Map<String, Object> fieldNameAndValue = new ConcurrentHashMap<String, Object>();
 		
-		Field[] fields = getDeclaredFields(entity);
+		Field[] fields = getDeclaredFields(t);
 		
 		for (Field field : fields) {
 			field.setAccessible(true);
-			if (field.get(entity) != null) {
-				fieldNameAndValue.put(field.getName(), field.get(entity)); 
+			if (field.get(t) != null) {
+				fieldNameAndValue.put(field.getName(), field.get(t)); 
 			}
 		}
 		return fieldNameAndValue;
