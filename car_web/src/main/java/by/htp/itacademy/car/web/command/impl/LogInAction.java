@@ -56,17 +56,23 @@ public class LogInAction implements Action {
 			user = userService.logIn(user);
 			inputCookie(response, user);
 
-			if (user.getRole() == 0) {
+			if (user.getRole() == ROLE_USER_VALUE) {
+				
 				request.getSession().setAttribute(SESSION_ATTRIBUTE_USER, user);
 				request.setAttribute(REQUEST_ATTRIBUTE_USER, request.getSession().getAttribute(SESSION_ATTRIBUTE_USER));
-			} else if (user.getRole() == 1) {
-				request.getSession().setAttribute("admin", user);
+				
+			} else if (user.getRole() == ROLE_ADMIN_VALUE) {
+				
+				request.getSession().setAttribute(REQUEST_ATTRIBUTE_ADMIN, user);
 				request.setAttribute(REQUEST_ATTRIBUTE_ADMIN, request.getSession().getAttribute(SESSION_ATTRIBUTE_ADMIN));
+				
 			}
 			responseValue.setPageResponse(PAGE_LOG_IN);
 		} catch (ServiceNoSuchUserException e) {
+			
 			responseValue.setPageResponse(PAGE_LOG_IN);
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG_NAME, REQUEST_ATTRIBUTE_MSG_VALUE);
+			
 			return responseValue;
 		}
 		return responseValue;

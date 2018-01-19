@@ -18,4 +18,7 @@ public final class Parameter {
 	public static final String COOKIE_NAME_LOGIN = "login";
 	public static final String COOKIE_NAME_PASSWORD = "password";
 	
+	public static final Integer ROLE_USER_VALUE = 0;
+	public static final Integer ROLE_ADMIN_VALUE = 1;
+	
 }
