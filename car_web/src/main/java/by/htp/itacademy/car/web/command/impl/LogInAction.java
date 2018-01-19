@@ -71,7 +71,7 @@ public class LogInAction implements Action {
 		} catch (ServiceNoSuchUserException e) {
 			
 			responseValue.setPageResponse(PAGE_LOG_IN);
-			request.setAttribute(REQUEST_ATTRIBUTE_MSG_NAME, REQUEST_ATTRIBUTE_MSG_VALUE);
+			request.setAttribute(REQUEST_ATTRIBUTE_MSG, MESSAGE_NO_USER_WITH_SUCH_LOGIN);
 			
 			return responseValue;
 		}
