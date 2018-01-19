@@ -12,7 +12,7 @@ import by.htp.itacademy.car.web.util.encryption.Decoder;
 
 
 @SuppressWarnings("serial")
-public final class OutputCookieDataTag extends  TagSupport implements DynamicAttributes{
+public final class OutputCookieDataTag extends TagSupport implements DynamicAttributes {
 	
 	private String login;
 	private String password;
@@ -38,7 +38,15 @@ public final class OutputCookieDataTag extends  TagSupport implements DynamicAtt
     public int doStartTag() throws JspException {
         try {
         	Cookie[] cookies = request.getCookies();
-    		if(cookies.length > 1) {
+        	
+        	for (Cookie cookie : cookies) {
+        		System.out.println(cookie.getPath());
+            	System.out.println(cookie.getName());
+            	System.out.println(cookie.getValue());
+			}
+        	
+    		
+        	if(cookies.length > 1) {
     			if(login != null) {
     				value = cookies[0].getValue();
     			}

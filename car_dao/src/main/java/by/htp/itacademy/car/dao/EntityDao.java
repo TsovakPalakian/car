@@ -13,7 +13,7 @@ import by.htp.itacademy.car.domain.entity.Entity;
 
 public interface EntityDao {
 		
-	List<Entity> select(Entity entity) throws DaoException;
+	List<? extends Entity> select(Entity entity) throws DaoException;
 	
 	boolean insert(Entity entity) throws DaoException;
 	

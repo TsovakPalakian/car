@@ -36,9 +36,7 @@ public class NewInstanceProcessor extends AnnotationProcessor {
 				NewInstance newInst = null;
 				
 				try {
-					System.out.println("field:1 " + field);
 					if (field.get(obj) == null) {
-						System.out.println("field:2 " + field);
 						annotation = field.getAnnotation(NewInstance.class);
 						newInst = (NewInstance) annotation;
 						
@@ -62,8 +60,9 @@ public class NewInstanceProcessor extends AnnotationProcessor {
 				
 				Constructor<?> constructor = clazz.getDeclaredConstructor();
 				constructor.setAccessible(true);
-				field.set(obj, constructor.newInstance());
-			
+				Object newObj = constructor.newInstance();
+				field.set(obj, newObj);
+				newInstance(newObj);
 			}
 		}
 	}

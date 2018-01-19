@@ -20,17 +20,7 @@ import static by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum.
 
 public class LogInAction implements Action {
 
-	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
-	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
-
-	
-	private User user;
-	
-	@NewInstance(clazz = UserServiceImpl.class)
-	private UserService userService;
-
-	private LogInAction() {
-	}
+	private LogInAction() {}
 
 	private static class Singletone {
 		private static final LogInAction INSTANCE = new LogInAction();
@@ -39,6 +29,16 @@ public class LogInAction implements Action {
 	public static LogInAction getInstance() {
 		return Singletone.INSTANCE;
 	}
+	
+	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
+	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
+
+	@Validation
+	@FillingInData(from = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
+	private User user;
+	
+	@NewInstance(clazz = UserServiceImpl.class)
+	private UserService userService;
 
 	@Override
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
@@ -46,53 +46,48 @@ public class LogInAction implements Action {
 		ResponseValue responseValue = null;
 		//responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 		//request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
-		fillingInData(this.user);
-
+		//fillingInData(this.user);
+		System.out.println("User hashCode: " + user.hashCode());
 		responseValue = authorisationUser(request, response, this.user);
 		return responseValue;
 	}
 
-	@FillingInData
-	private void fillingInData(
+//	@FillingInData
+//	private void fillingInData(
+//
+//			@FillingInData(name = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
+//			@Validation User user) {
+//		
+//		this.user = user;
+//	}
 
-			@FillingInData(name = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
-			@Validation User user) {
-		
-		this.user = user;
-	}
-
-	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response,
-			@Cryptographer(name = "encrypt", fields = { "password" }) User user) {
+	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response, User user) {
 
 		ResponseValue responseValue = new ResponseValue(true);
 		try {
-			System.out.println("userService : " + userService);
+			System.out.println("user result: " + user);
 			user = userService.logIn(user);
+			System.out.println("user: " + user);
 			inputCookie(response, user);
 
-			if (user.getRole() == 0) {
+			if (user.getRole() == null) {
 				request.getSession().setAttribute("user", user);
 				request.setAttribute("user", request.getSession().getAttribute("user"));
 			} else if (user.getRole() == 1) {
 				request.getSession().setAttribute("admin", user);
 				request.setAttribute("admin", request.getSession().getAttribute("admin"));
 			}
-			
+			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 		} catch (ServiceNoSuchUserException e) {
 			responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
 			return responseValue;
 		}
-		return null;
+		return responseValue;
 	}
 
 	private void inputCookie(HttpServletResponse response, User user) {
 		response.addCookie(new Cookie("logIn", user.getLogin()));
 		response.addCookie(new Cookie("password", user.getPassword()));
-	}
-
-	public UserService getUserService() {
-		return userService;
-	}
-	
+	}	
 }

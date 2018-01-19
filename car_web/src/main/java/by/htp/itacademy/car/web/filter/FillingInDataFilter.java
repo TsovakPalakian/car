@@ -25,19 +25,21 @@ public class FillingInDataFilter implements Filter {
 		
 		System.out.println("FillingInDataFilter");
 		
-		FillingInDataProcessor fillingParams = new FillingInDataForParameterProcessor();
+		//FillingInDataProcessor fillingParams = new FillingInDataForParameterProcessor();
 		FillingInDataProcessor fillingFields = new FillingInDataForFieldProcessor();
 		
 		NewInstanceProcessor newInstancePro = new NewInstanceProcessor();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 			
-		System.out.println("request parameter : " + httpRequest.getParameter("login"));
 		try {
-			newInstancePro.newInstance(UserServiceImpl.getInstance());
-			//newInstancePro.newInstance(LogInAction.getInstance());
-			//newInstancePro.newInstance(UserServiceImpl.getInstance());
+			LogInAction la = LogInAction.getInstance();
+			System.out.println("LogInAction:                               " + LogInAction.getInstance());
+			//UserServiceImpl usi = UserServiceImpl.getInstance();
+			//System.out.println("UserServiceImpl:                           " + UserServiceImpl.getInstance());
+			newInstancePro.newInstance(la);
+			//newInstancePro.newInstance(usi);
 			//fillingParams.fillingInDataFromFormForParameters(httpRequest, LogInAction.getInstance());
-			//fillingFields.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
+			fillingFields.fillingInDataFromFormForFields(httpRequest, LogInAction.getInstance());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

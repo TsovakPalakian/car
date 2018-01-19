@@ -19,18 +19,18 @@ public abstract class FillingInDataProcessor extends AnnotationProcessor {
 	protected Constructor<?> constructor;
 	protected Object[] values;
 	
-	protected void initValues(HttpServletRequest request, Class<?> clazz, Parameter parameter) 
+	protected void initValues(HttpServletRequest request, Parameter parameter) 
 			throws SecurityException, ClassNotFoundException, IllegalParameterException {
-		System.out.println(clazz);
+		
 		Annotation annotation = parameter.getAnnotation(FillingInData.class);
-		transferAnnotation(request, clazz, annotation);
+		transferAnnotation(request, parameter.getType(), annotation);
 	}
 	
-	protected void initValues(HttpServletRequest request, Class<?> clazz, Field field) 
+	protected void initValues(HttpServletRequest request, Field field) 
 			throws SecurityException, ClassNotFoundException, IllegalParameterException {
 		
 		Annotation annotation = field.getAnnotation(FillingInData.class);
-		transferAnnotation(request, clazz, annotation);
+		transferAnnotation(request, field.getType(), annotation);
 	}
 	
 	private void transferAnnotation(HttpServletRequest request, Class<?> clazz, Annotation annotation) 
@@ -39,20 +39,18 @@ public abstract class FillingInDataProcessor extends AnnotationProcessor {
 		FillingInData annotationValue = (FillingInData) annotation;
 		this.paramsCount = annotationValue.numberOfParameters().getCount();
 		RequestParametersEnum listOfParams = annotationValue.listOfParameters();
-		System.out.println(clazz);
+		
 		this.constructor = getConstructor(clazz, this.paramsCount);
 		this.values = getParametersFromRequest(request, listOfParams);
 	}
 	
 	public void fillingInDataFromFormForParameters(HttpServletRequest request, Object obj)
-			throws IllegalParameterException, IllegalAccessException, IllegalArgumentException, 
-			InvocationTargetException, SecurityException, ClassNotFoundException, InstantiationException {
+			throws Exception {
 		
 	}
 	
 	public void fillingInDataFromFormForFields(HttpServletRequest request, Object obj) 
-			throws SecurityException, ClassNotFoundException, IllegalParameterException, InstantiationException, 
-				IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+			throws Exception {
 		
 	}
 }

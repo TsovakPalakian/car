@@ -1,11 +1,13 @@
 package by.htp.itacademy.car.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import by.htp.itacademy.car.dao.EntityDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.dao.impl.UserDaoImpl;
 import by.htp.itacademy.car.domain.annotation.NewInstance;
+import by.htp.itacademy.car.domain.entity.Entity;
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
 import by.htp.itacademy.car.service.exception.ServiceException;
@@ -20,9 +22,7 @@ public class UserServiceImpl implements UserService {
 	@NewInstance(clazz = UserDaoImpl.class)
 	private EntityDao dao;
 	
-	private UserServiceImpl() {
-		//dao = UserDaoImpl.getInstance();
-	}
+	private UserServiceImpl() {}
 
 	private static class Singletone {
 		private static final UserServiceImpl INSTANCE = new UserServiceImpl();
@@ -36,9 +36,13 @@ public class UserServiceImpl implements UserService {
 	public User logIn(User user) throws ServiceNoSuchUserException {
 		User userFromDB = null;
 		try {
-			System.out.println("1 : " + dao);
-			System.out.println("2 : " + dao.select(user));
-			userFromDB = (User) dao.select(user).get(FIRST_ELEMENT_FROM_LIST_OF_USERS);
+			List<? extends Entity> listUser = dao.select(user);			
+			Iterator<? extends Entity> iter = listUser.iterator();
+			
+			while(iter.hasNext()) {
+				userFromDB = (User) iter.next();
+			}
+			
 			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getUserId());
 		} catch (DaoException e) {
 			log.error(LOG_ERROR + e.getMessage());

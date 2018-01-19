@@ -17,7 +17,7 @@ import static java.lang.annotation.ElementType.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FillingInData {
 	
-	String name() default "";
+	String from() default "";
 	RequestParametersEnum listOfParameters() default EMPTY;
 	ConstructorParametersEnum numberOfParameters() default ZERO;
 }

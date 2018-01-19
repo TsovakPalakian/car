@@ -18,15 +18,11 @@ public abstract class AnnotationProcessor {
 	protected Constructor<?> getConstructor(Class<?> clazz, int paramCount)
 			throws IllegalParameterException, SecurityException, ClassNotFoundException {
 
-		System.out.println(clazz);
 		if (clazz == null) {
 			throw new IllegalParameterException("An object can not to be null!");
 		}
-		System.out.println("obj " + clazz);
+		
 		Constructor<?>[] constructors = getConstructors(clazz);
-		for (Constructor<?> con : constructors) {
-			System.out.println(con);
-		}
 		Constructor<?> constructor = null;
 
 		for (int i = 0; i < constructors.length; ++i) {
@@ -39,8 +35,6 @@ public abstract class AnnotationProcessor {
 			throw new IllegalParameterException("A constructor with such a number of parameters does not exist!");
 		}
 		
-		System.out.println(constructor.getName() + " : " + constructor.getParameterCount());
-
 		return constructor;
 	}
 
@@ -108,7 +102,13 @@ public abstract class AnnotationProcessor {
 			throw new IllegalParameterException("A class can not to be null!");
 		}
 		
-		return clazz.newInstance();
+		try {
+			return clazz.getClassLoader().loadClass(clazz.getName()).newInstance();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	protected Constructor<?>[] getConstructors(Class<?> clazz)
@@ -117,10 +117,6 @@ public abstract class AnnotationProcessor {
 		if (clazz == null) {
 			throw new IllegalParameterException("An object can not to be null!");
 		}
-		System.out.println(clazz);
-		System.out.println(clazz.getClass());
-		System.out.println(clazz.getClass().getTypeName());
-		System.out.println(clazz.getClass().getName());
 		return clazz.getConstructors();
 	}
 
@@ -133,11 +129,6 @@ public abstract class AnnotationProcessor {
 			data[i] = request.getParameter(value);
 			i++;
 		}
-		
-		for (Object obje : data) {
-			System.out.println(obje);
-		}
-		
 		return data;
 	}
 
