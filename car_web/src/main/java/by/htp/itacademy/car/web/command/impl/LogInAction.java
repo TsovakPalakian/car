@@ -31,7 +31,7 @@ public class LogInAction implements Action {
 	}
 	
 	private static final String NAME_OF_THE_PARAMETERS_FOR_USER_LOGIN = "userLogIn";
-	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
+	private static final String REQUEST_ATTRIBUTE_MSG = "msg";
 
 	@Validation
 	@FillingInData(from = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
@@ -43,34 +43,21 @@ public class LogInAction implements Action {
 	@Override
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
 
-		ResponseValue responseValue = null;
 		//responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 		//request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
-		//fillingInData(this.user);
-		System.out.println("User hashCode: " + user.hashCode());
-		responseValue = authorisationUser(request, response, this.user);
+		ResponseValue responseValue = authorisationUser(request, response, this.user);
 		return responseValue;
 	}
-
-//	@FillingInData
-//	private void fillingInData(
-//
-//			@FillingInData(name = "form", listOfParameters = LOG_IN, numberOfParameters = TWO) 
-//			@Validation User user) {
-//		
-//		this.user = user;
-//	}
 
 	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response, User user) {
 
 		ResponseValue responseValue = new ResponseValue(true);
 		try {
-			System.out.println("user result: " + user);
+			
 			user = userService.logIn(user);
-			System.out.println("user: " + user);
 			inputCookie(response, user);
 
-			if (user.getRole() == null) {
+			if (user.getRole() == 0) {
 				request.getSession().setAttribute("user", user);
 				request.setAttribute("user", request.getSession().getAttribute("user"));
 			} else if (user.getRole() == 1) {
