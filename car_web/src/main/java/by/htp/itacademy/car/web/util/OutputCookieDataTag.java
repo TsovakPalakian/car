@@ -50,7 +50,7 @@ public final class OutputCookieDataTag extends TagSupport implements DynamicAttr
     			if(login != null) {
     				value = cookies[0].getValue();
     			}
-    			else if(password != null) {
+    			else if(password != null && password.length() > 7) {
     				value = decoder.decrypt(cookies[1].getValue());
     			}
     		}

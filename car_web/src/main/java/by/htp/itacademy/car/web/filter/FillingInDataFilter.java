@@ -45,7 +45,6 @@ public class FillingInDataFilter implements Filter {
 			validationProcessor.chekAnnotation(LogInAction.getInstance());
 			
 		}catch (IllegalParameterException e) {
-			//responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, MESSAGE_INCORRECT_DATA_ENTRY);
 		} catch (Exception e) {
 			e.printStackTrace();

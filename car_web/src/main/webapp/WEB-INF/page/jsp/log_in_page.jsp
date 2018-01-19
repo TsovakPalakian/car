@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!--  %@ taglib uri="/WEB-INF/outputCookieDataTag.tld" prefix="fdl"%> -->
+<%@ taglib uri="/WEB-INF/outputCookieDataTag.tld" prefix="fdl"%>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -13,23 +13,20 @@
 <body>
 	<div>
 		<div id="wrapper">
-			<%@include file="../jspf/header_log_in.jspf" %>
+			<%@include file="/WEB-INF/page/jspf/header_log_in.jspf" %>
 			<hr>
 			
 			<div class="menu_center">
-				<%@include file="../jspf/menu.jspf" %>
+				<%@include file="/WEB-INF/page/jspf/menu.jspf" %>
 			</div>
 			
 			<hr>
 			<div id="heading">
 				<h2>Please, fill in the form to log in!</h2>
 			</div>
-			<div style="text-align: center;">
-				<font face="monospace" color="black" size="4"> <b>
-						<td><c:out value="${msg}" /></td>
-				</b>
-				</font>
-			</div>
+			
+			<%@include file="/WEB-INF/page/jspf/msg.jspf" %>
+			
 			<div id="login_form">
 				<form action="${pageContext.request.contextPath}/Controller"
 					method="POST">
@@ -45,7 +42,7 @@
 			</div>
 		</div>
 		<div id="foot">
-			<jsp:include page="../jspf/footer.jspf" />
+			<jsp:include page="/WEB-INF/page/jspf/footer.jspf" />
 		</div>
 	</div>
 </body>

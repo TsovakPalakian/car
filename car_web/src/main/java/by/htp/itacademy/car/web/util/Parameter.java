@@ -13,7 +13,7 @@ public final class Parameter {
 	
 	public static final String MESSAGE_NO_ACCESS = "Sorry, but you do not have access to this page!";
 	public static final String MESSAGE_NO_USER_WITH_SUCH_LOGIN = "There is no user with such login!";
-	public static final String MESSAGE_INCORRECT_DATA_ENTRY = "Incorrect data entry";
+	public static final String MESSAGE_INCORRECT_DATA_ENTRY = "Incorrect data entry!";
 	
 	public static final String COOKIE_NAME_LOGIN = "login";
 	public static final String COOKIE_NAME_PASSWORD = "password";

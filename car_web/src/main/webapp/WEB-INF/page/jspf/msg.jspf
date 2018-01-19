@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-	<font face="monospace" color="black" size="4"> <b>
+	<font face="monospace" color="red" size="6"> <b>
 			<td><c:out value="${msg}" /></td>
 	</b>
 	</font>
