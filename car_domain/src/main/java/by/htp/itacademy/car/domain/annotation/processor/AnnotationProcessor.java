@@ -9,7 +9,7 @@ import java.lang.reflect.Parameter;
 import javax.servlet.http.HttpServletRequest;
 
 import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum;
+import by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum;
 
 public abstract class AnnotationProcessor {
 
@@ -120,7 +120,7 @@ public abstract class AnnotationProcessor {
 		return clazz.getConstructors();
 	}
 
-	protected Object[] getParametersFromRequest(HttpServletRequest request, RequestParametersEnum params) {
+	protected Object[] getParametersFromRequest(HttpServletRequest request, ListOfParametersEnum params) {
 
 		Object[] data = new Object[params.getList().size()];
 

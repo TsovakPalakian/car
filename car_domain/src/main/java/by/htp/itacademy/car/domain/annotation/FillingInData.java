@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum;
-import by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum;
+import by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum;
 
 import static by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum.*;
-import static by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum.*;
+import static by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum.*;
 import static java.lang.annotation.ElementType.*;
 
 @Documented
@@ -18,6 +18,6 @@ import static java.lang.annotation.ElementType.*;
 public @interface FillingInData {
 	
 	String from() default "";
-	RequestParametersEnum listOfParameters() default EMPTY;
+	ListOfParametersEnum listOfParameters() default EMPTY;
 	ConstructorParametersEnum numberOfParameters() default ZERO;
 }

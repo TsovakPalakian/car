@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import by.htp.itacademy.car.domain.annotation.FillingInData;
 import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
-import by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum;
+import by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum;
 
 public abstract class FillingInDataProcessor extends AnnotationProcessor {
 	
@@ -38,7 +38,7 @@ public abstract class FillingInDataProcessor extends AnnotationProcessor {
 		
 		FillingInData annotationValue = (FillingInData) annotation;
 		this.paramsCount = annotationValue.numberOfParameters().getCount();
-		RequestParametersEnum listOfParams = annotationValue.listOfParameters();
+		ListOfParametersEnum listOfParams = annotationValue.listOfParameters();
 		
 		this.constructor = getConstructor(clazz, this.paramsCount);
 		this.values = getParametersFromRequest(request, listOfParams);

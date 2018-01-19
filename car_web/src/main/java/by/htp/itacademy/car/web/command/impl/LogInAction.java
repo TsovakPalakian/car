@@ -16,7 +16,7 @@ import by.htp.itacademy.car.web.command.Action;
 import by.htp.itacademy.car.web.util.ResponseValue;
 
 import static by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum.TWO;
-import static by.htp.itacademy.car.domain.annotation.util.RequestParametersEnum.LOG_IN;
+import static by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum.LOG_IN;
 import static by.htp.itacademy.car.web.util.AddressPage.*;
 import static by.htp.itacademy.car.web.util.Parameter.*;
 

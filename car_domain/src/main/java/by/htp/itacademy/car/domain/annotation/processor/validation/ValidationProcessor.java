@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.htp.itacademy.car.domain.annotation.Validation;
 import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
 import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
 import by.htp.itacademy.car.domain.annotation.util.ConstantValue;
@@ -15,6 +16,18 @@ import by.htp.itacademy.car.domain.annotation.util.ConstantValue;
 public abstract class ValidationProcessor extends AnnotationProcessor {
 	
 	public ValidationProcessor() {}
+	
+	
+	public void chekAnnotation(Object obj) 
+			throws Exception {
+		
+		for (Field field : getDeclaredFields(obj)) {
+			if (field.isAnnotationPresent(Validation.class)) {
+				field.setAccessible(true);
+				validator(field.get(obj), ConstantValue.REGEX_PARAMETERS);
+			}
+		}
+	}
 	
 	public void validator(Object obj, Map<String, String> regexParameters)
 			throws Exception {
@@ -32,17 +45,6 @@ public abstract class ValidationProcessor extends AnnotationProcessor {
 						throw new IllegalParameterException();
 					}
 				}
-			}
-		}
-	}
-	
-	public void chekAnnotation(Object obj, Class<? extends Annotation> clazz) 
-			throws Exception {
-		
-		for (Field field : getDeclaredFields(obj)) {
-			if (field.isAnnotationPresent(clazz)) {
-				field.setAccessible(true);
-				validator(field.get(obj), ConstantValue.REGEX_PARAMETERS);
 			}
 		}
 	}
