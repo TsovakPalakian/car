@@ -7,3 +7,6 @@ pom.properties
 .project
 log_steps.txt
 /.metadata/
+
+*.bat
+*.txt
