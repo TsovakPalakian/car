@@ -7,22 +7,21 @@ import by.htp.connector.AbstractConnectionPool;
 import by.htp.connector.DatabaseConnectionException;
 import by.htp.connector.IConnection;
 
-import static by.htp.itacademy.car.dao.connector.ResourceParameter.*;
+import static by.htp.itacademy.car.dao.connector.ConnectionParameters.*;
 
 public final class ConnectionPool extends AbstractConnectionPool implements IConnection {
 
-	private Long connectionPoolSize = CONNECTION_POOL_INITIAL_SIZE;
+	private Long connectionPoolSize = INITIAL_CONNECTION_POOL_SIZE;
 	private Long numberOfConnectionsUsed = INITIAL_NUMBER_OF_CONNECTIONS_USED;
 	
 	private final static ConcurrentHashMap<Connection, Boolean> CONNECTIONS = new ConcurrentHashMap<Connection, Boolean>();
 	
 	private ConnectionPool() {
 		try {
-			initResource(JDBC_RESOURCE_BUNDLE_PARAMETER_CONFIG, JDBC_RESOURCE_BUNDLE_PARAMETER_URL, 
-					JDBC_RESOURCE_BUNDLE_PARAMETER_LOGIN, JDBC_RESOURCE_BUNDLE_PARAMETER_PASSWORD, 
-					JDBC_RESOURCE_BUNDLE_PARAMETER_DRIVER_NAME);
+			initResource(PROPERTY_FILE_NAME, CONFIG_PARAMETER_URL, CONFIG_PARAMETER_LOGIN,
+					CONFIG_PARAMETER_PASSWORD, CONFIG_PARAMETER_DRIVER_NAME);
 			
-			fillingConnectionPool(CONNECTIONS, CONNECTION_POOL_INITIAL_SIZE);
+			fillingConnectionPool(CONNECTIONS, INITIAL_CONNECTION_POOL_SIZE);
 		} catch (DatabaseConnectionException e) {
 			e.printStackTrace();
 		}

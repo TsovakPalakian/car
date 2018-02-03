@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.annotation;
+package by.htp.itacademy.car.annotation;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.PARAMETER;

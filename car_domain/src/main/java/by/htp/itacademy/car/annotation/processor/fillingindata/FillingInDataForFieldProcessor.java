@@ -1,10 +1,10 @@
-package by.htp.itacademy.car.domain.annotation.processor.fillingindata;
+package by.htp.itacademy.car.annotation.processor.fillingindata;
 
 import java.lang.reflect.Field;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.domain.annotation.FillingInData;
+import by.htp.itacademy.car.annotation.FillingInData;
 
 public class FillingInDataForFieldProcessor extends FillingInDataProcessor {
 

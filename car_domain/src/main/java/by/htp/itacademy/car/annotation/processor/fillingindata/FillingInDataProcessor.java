@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.annotation.processor.fillingindata;
+package by.htp.itacademy.car.annotation.processor.fillingindata;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -8,10 +8,10 @@ import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.domain.annotation.FillingInData;
-import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
-import by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum;
+import by.htp.itacademy.car.annotation.FillingInData;
+import by.htp.itacademy.car.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.annotation.processor.AnnotationProcessor;
+import by.htp.itacademy.car.annotation.util.ListOfParametersEnum;
 
 public abstract class FillingInDataProcessor extends AnnotationProcessor {
 	

@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.annotation.processor;
+package by.htp.itacademy.car.annotation.processor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -8,8 +8,8 @@ import java.lang.reflect.Parameter;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum;
+import by.htp.itacademy.car.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.annotation.util.ListOfParametersEnum;
 
 public abstract class AnnotationProcessor {
 

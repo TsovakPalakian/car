@@ -9,11 +9,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataForFieldProcessor;
-import by.htp.itacademy.car.domain.annotation.processor.fillingindata.FillingInDataProcessor;
-import by.htp.itacademy.car.domain.annotation.processor.newinstance.NewInstanceProcessor;
-import by.htp.itacademy.car.domain.annotation.processor.validation.ValidationProcessor;
+import by.htp.itacademy.car.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.annotation.processor.fillingindata.FillingInDataForFieldProcessor;
+import by.htp.itacademy.car.annotation.processor.fillingindata.FillingInDataProcessor;
+import by.htp.itacademy.car.annotation.processor.newinstance.NewInstanceProcessor;
+import by.htp.itacademy.car.annotation.processor.validation.ValidationProcessor;
 import by.htp.itacademy.car.web.command.impl.LogInAction;
 
 import static by.htp.itacademy.car.web.util.Parameter.*;

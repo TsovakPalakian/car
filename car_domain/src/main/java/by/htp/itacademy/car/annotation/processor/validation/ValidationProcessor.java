@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.annotation.processor.validation;
+package by.htp.itacademy.car.annotation.processor.validation;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -7,10 +7,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import by.htp.itacademy.car.domain.annotation.Validation;
-import by.htp.itacademy.car.domain.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
-import by.htp.itacademy.car.domain.annotation.util.ConstantValue;
+import by.htp.itacademy.car.annotation.Validation;
+import by.htp.itacademy.car.annotation.exception.IllegalParameterException;
+import by.htp.itacademy.car.annotation.processor.AnnotationProcessor;
+import by.htp.itacademy.car.annotation.util.ConstantValue;
 
 public class ValidationProcessor extends AnnotationProcessor {
 	

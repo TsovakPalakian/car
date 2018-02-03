@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.annotation.exception;
+package by.htp.itacademy.car.annotation.exception;
 
 @SuppressWarnings("serial")
 public class IllegalParameterException extends Exception {

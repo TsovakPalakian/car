@@ -1,12 +1,12 @@
-package by.htp.itacademy.car.domain.annotation.processor.newinstance;
+package by.htp.itacademy.car.annotation.processor.newinstance;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import by.htp.itacademy.car.domain.annotation.NewInstance;
-import by.htp.itacademy.car.domain.annotation.processor.AnnotationProcessor;
+import by.htp.itacademy.car.annotation.NewInstance;
+import by.htp.itacademy.car.annotation.processor.AnnotationProcessor;
 
 public class NewInstanceProcessor extends AnnotationProcessor {
 	

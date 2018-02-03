@@ -1,8 +1,8 @@
-package by.htp.itacademy.car.domain.annotation.util;
+package by.htp.itacademy.car.annotation.util;
 
 import java.util.List;
 
-import static by.htp.itacademy.car.domain.annotation.util.ConstantValue.*;
+import static by.htp.itacademy.car.annotation.util.ConstantValue.*;
 
 public enum ListOfParametersEnum {
 	

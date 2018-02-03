@@ -1,15 +1,15 @@
-package by.htp.itacademy.car.domain.annotation;
+package by.htp.itacademy.car.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum;
-import by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum;
+import by.htp.itacademy.car.annotation.util.ConstructorParametersEnum;
+import by.htp.itacademy.car.annotation.util.ListOfParametersEnum;
 
-import static by.htp.itacademy.car.domain.annotation.util.ConstructorParametersEnum.*;
-import static by.htp.itacademy.car.domain.annotation.util.ListOfParametersEnum.*;
+import static by.htp.itacademy.car.annotation.util.ConstructorParametersEnum.*;
+import static by.htp.itacademy.car.annotation.util.ListOfParametersEnum.*;
 import static java.lang.annotation.ElementType.*;
 
 @Documented

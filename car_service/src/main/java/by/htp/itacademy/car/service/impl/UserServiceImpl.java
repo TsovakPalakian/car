@@ -3,10 +3,10 @@ package by.htp.itacademy.car.service.impl;
 import java.util.Iterator;
 import java.util.List;
 
+import by.htp.itacademy.car.annotation.NewInstance;
 import by.htp.itacademy.car.dao.EntityDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.dao.impl.UserDaoImpl;
-import by.htp.itacademy.car.domain.annotation.NewInstance;
 import by.htp.itacademy.car.domain.entity.Entity;
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;

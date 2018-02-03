@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.annotation;
+package by.htp.itacademy.car.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
