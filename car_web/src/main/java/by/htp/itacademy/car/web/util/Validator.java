@@ -3,7 +3,7 @@ package by.htp.itacademy.car.web.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import by.htp.itacademy.car.web.command.exception.CommandInvalidParameterException;
+import by.htp.itacademy.car.web.exception.CommandInvalidParameterException;
 
 public class Validator {
 	

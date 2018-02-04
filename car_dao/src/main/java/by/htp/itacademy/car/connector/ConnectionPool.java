@@ -1,13 +1,9 @@
-package by.htp.itacademy.car.dao.connector;
+package by.htp.itacademy.car.connector;
+
+import static by.htp.itacademy.car.connector.util.ConnectionParameters.*;
 
 import java.sql.Connection;
 import java.util.concurrent.ConcurrentHashMap;
-
-import by.htp.connector.AbstractConnectionPool;
-import by.htp.connector.DatabaseConnectionException;
-import by.htp.connector.IConnection;
-
-import static by.htp.itacademy.car.dao.connector.ConnectionParameters.*;
 
 public final class ConnectionPool extends AbstractConnectionPool implements IConnection {
 

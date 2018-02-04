@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.util.encryption;
+package by.htp.itacademy.car.web.encryption;
 
 public class Decoder extends CipherMachine {
 

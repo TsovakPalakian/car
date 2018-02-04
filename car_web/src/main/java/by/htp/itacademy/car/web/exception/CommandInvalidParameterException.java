@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.command.exception;
+package by.htp.itacademy.car.web.exception;
 
 @SuppressWarnings("serial")
 public class CommandInvalidParameterException extends Exception {

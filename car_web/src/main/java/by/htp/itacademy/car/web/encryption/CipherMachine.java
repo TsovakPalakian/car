@@ -1,10 +1,10 @@
-package by.htp.itacademy.car.web.util.encryption;
+package by.htp.itacademy.car.web.encryption;
 
-public abstract class CipherMachine {
+abstract class CipherMachine {
 	
 	private static final String KEY = "fiDeliO";
 	
-	int dataLength;
+	protected int dataLength;
 	
 	int[] converterDataIntoAnArrayOfIntegers(String data) {
 		char[] dataArrayChar = data.toCharArray();

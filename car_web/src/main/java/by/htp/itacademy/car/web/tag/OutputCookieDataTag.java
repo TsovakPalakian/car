@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.web.util;
+package by.htp.itacademy.car.web.tag;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import by.htp.itacademy.car.web.util.encryption.Decoder;
+import by.htp.itacademy.car.web.encryption.Decoder;
 
 
 @SuppressWarnings("serial")
