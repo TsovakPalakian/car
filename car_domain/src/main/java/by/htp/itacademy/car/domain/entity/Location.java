@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 public class Location implements Entity, Serializable {
 
-	private Long locationId;
+	private Long id;
 	private String address;
 	private String link;
 	

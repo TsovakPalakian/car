@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 public class Order implements Entity, Serializable {
 
-	private Long orderId;
+	private Long id;
 	private Date pickUpDate;
 	private Date dropOffDate;
 	private String status;

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 public class RentedCar implements Entity, Serializable {
 
-	private Long rentedCarId;
+	private Long id;
 	private String model;
 	private Date year;
 	private String transmition;

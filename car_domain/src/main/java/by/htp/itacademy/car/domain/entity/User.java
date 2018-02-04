@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 public class User implements Entity, Serializable {
 	
-	private Long userId;
+	private Long id;
 	private String name;
 	private String surname;
 	private String login;

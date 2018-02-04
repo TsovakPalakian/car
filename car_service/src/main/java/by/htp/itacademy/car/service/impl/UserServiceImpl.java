@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 				userFromDB = (User) iter.next();
 			}
 			
-			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getUserId());
+			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getId());
 		} catch (DaoException e) {
 			log.error(LOG_ERROR + e.getMessage());
 			throw new ServiceNoSuchUserException();

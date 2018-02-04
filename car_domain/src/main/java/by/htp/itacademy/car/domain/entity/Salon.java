@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 public class Salon implements Entity, Serializable {
 	
-	private Long salonId;
+	private Long id;
 	private String name;
 	private Location location;
 	private RentedCar rentedCar;

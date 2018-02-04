@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("serial")
 public class Accessory implements Entity, Serializable {
 
-	private Long accessoryId;
+	private Long id;
 	private String name;
 	private BigDecimal price;
 
