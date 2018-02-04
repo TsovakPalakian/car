@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("serial")
 public class Location implements Entity, Serializable {
 
-	private static final long serialVersionUID = 2395292988802715961L;
-	
 	private Long locationId;
 	private String address;
 	private String link;

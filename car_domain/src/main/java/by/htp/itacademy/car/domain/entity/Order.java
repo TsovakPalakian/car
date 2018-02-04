@@ -11,19 +11,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("serial")
 public class Order implements Entity, Serializable {
 
-	private static final long serialVersionUID = 2902931410838985262L;
-	
 	private Long orderId;
 	private Date pickUpDate;
 	private Date dropOffDate;
 	private String status;
 	private BigDecimal totalPrice;
-	private Long pickUpLocationId;
-	private Long dropOffLocationId;
-	private Long userId;
-	private Long rentedCarId;
-	private Long accessoryId;
+	private Location pickUpLocationId;
+	private Location dropOffLocationId;
+	private User userId;
+	private RentedCar rentedCarId;
+	private Accessory accessoryId;
 	
 }

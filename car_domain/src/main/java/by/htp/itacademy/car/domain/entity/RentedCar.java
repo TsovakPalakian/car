@@ -10,10 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("serial")
 public class RentedCar implements Entity, Serializable {
 
-	private static final long serialVersionUID = 7374239477802439416L;
-	
 	private Long rentedCarId;
 	private String model;
 	private Date year;

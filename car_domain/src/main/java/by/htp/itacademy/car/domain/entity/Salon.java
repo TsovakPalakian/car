@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("serial")
 public class Salon implements Entity, Serializable {
-	
-	private static final long serialVersionUID = -2398697008302262724L;
 	
 	private Long salonId;
 	private String name;
