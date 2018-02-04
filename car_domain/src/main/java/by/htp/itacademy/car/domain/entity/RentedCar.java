@@ -24,6 +24,6 @@ public class RentedCar implements Entity, Serializable {
 	private String image;
 	private String description;
 	private String readiness;
-	private Long accessoryId;
+	private Accessory accessory;
 	
 }

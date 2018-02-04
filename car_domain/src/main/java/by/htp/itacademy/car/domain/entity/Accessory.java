@@ -10,10 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("serial")
 public class Accessory implements Entity, Serializable {
 
-	private static final long serialVersionUID = -5957895850562799609L;
-	
 	private Long accessoryId;
 	private String name;
 	private BigDecimal price;
