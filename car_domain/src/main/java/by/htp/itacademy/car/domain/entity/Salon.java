@@ -15,7 +15,7 @@ public class Salon implements Entity, Serializable {
 	
 	private Long salonId;
 	private String name;
-	private Long locationId;
-	private Long rentedCarId;
+	private Location location;
+	private RentedCar rentedCar;
 	
 }
