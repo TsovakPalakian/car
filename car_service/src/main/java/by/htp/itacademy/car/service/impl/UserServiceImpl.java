@@ -1,13 +1,11 @@
 package by.htp.itacademy.car.service.impl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import by.htp.itacademy.car.annotation.NewInstance;
 import by.htp.itacademy.car.dao.UserDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.dao.impl.UserDaoImpl;
-import by.htp.itacademy.car.domain.entity.Entity;
 import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
 import by.htp.itacademy.car.service.exception.ServiceException;
@@ -16,7 +14,6 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class UserServiceImpl implements UserService {
-	private static final Integer FIRST_ELEMENT_FROM_LIST_OF_USERS = 0;
 	private static final String LOG_ERROR = " ERROR: ";
 	
 	@NewInstance(clazz = UserDaoImpl.class)
