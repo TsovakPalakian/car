@@ -36,13 +36,8 @@ public class UserServiceImpl implements UserService {
 	public User logIn(User user) throws ServiceNoSuchUserException {
 		User userFromDB = null;
 		try {
-			List<? extends Entity> listUser = dao.select(user);			
-			Iterator<? extends Entity> iter = listUser.iterator();
-			
-			while(iter.hasNext()) {
-				userFromDB = (User) iter.next();
-			}
-			
+			userFromDB = userDao.get(user.getId());			
+						
 			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getId());
 		} catch (DaoException e) {
 			log.error(LOG_ERROR + e.getMessage());

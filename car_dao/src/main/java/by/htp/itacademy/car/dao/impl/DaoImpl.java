@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import by.htp.itacademy.car.dao.IDao;
+import by.htp.itacademy.car.dao.exception.DaoException;
 import lombok.Getter;
 
 public abstract class DaoImpl<T> implements IDao<T> {
@@ -18,7 +19,7 @@ public abstract class DaoImpl<T> implements IDao<T> {
 	}
 	
 	@Override
-	public T get(Long id) {
+	public T get(Long id) throws DaoException {
 		return entityManager.find(clazz, id);
 	}
 

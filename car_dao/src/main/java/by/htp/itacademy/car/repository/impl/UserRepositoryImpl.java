@@ -10,7 +10,6 @@ public class UserRepositoryImpl extends AbstractRepositorySpec<User> {
 
 	@Override
 	public User get(User item) {
-		// TODO Auto-generated method stub
 		return super.get(item);
 	}
 
