@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @SuppressWarnings("serial")
-public class User implements Pojo, Serializable {
+public class User implements Serializable {
 	
 	private Long id;
 	private String name;
@@ -21,12 +21,12 @@ public class User implements Pojo, Serializable {
 	private Integer role;
 	
 	public boolean userHasLoginAndPassword(User user) throws DomainException {
-		if (this.login == null && this.password == null) {
-			throw new DomainException("Login or password can not be null!");
-		}
-		
-		boolean hasLogin = this.login.equals(user.getLogin());
-		boolean hasPassword = this.password.equals(user.getPassword());
-		return hasLogin && hasPassword;
+//		if (this.login == null && this.password == null) {
+//			throw new DomainException("Login or password can not be null!");
+//		}
+//		
+//		boolean hasLogin = this.login.equals(user.getLogin());
+//		boolean hasPassword = this.password.equals(user.getPassword());
+		return false;//hasLogin && hasPassword;
 	} 
 }
