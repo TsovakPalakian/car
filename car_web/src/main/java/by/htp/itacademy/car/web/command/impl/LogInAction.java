@@ -4,7 +4,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.htp.itacademy.car.annotation.Cryptographer;
 import by.htp.itacademy.car.annotation.FillingInData;
 import by.htp.itacademy.car.annotation.NewInstance;
 import by.htp.itacademy.car.annotation.Validation;

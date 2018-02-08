@@ -7,12 +7,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 
-import by.htp.itacademy.car.annotation.exception.IllegalParameterException;
-import by.htp.itacademy.car.web.command.impl.LogInAction;
-
-import static by.htp.itacademy.car.web.util.Parameter.*;
 
 public class FillingInDataFilter implements Filter {
 
