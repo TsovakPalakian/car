@@ -41,11 +41,7 @@ public class LogInAction implements Action {
 
 	@Override
 	public ResponseValue execute(HttpServletRequest request, HttpServletResponse response) {
-
-		//responseValue.setPageResponse("WEB-INF/page/jsp/log_in_page.jsp");
-		//request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry");
-		ResponseValue responseValue = authorisationUser(request, response, this.user);
-		return responseValue;
+		return authorisationUser(request, response, this.user);
 	}
 
 	private ResponseValue authorisationUser(HttpServletRequest request, HttpServletResponse response, User user) {
