@@ -1,8 +1,7 @@
 package by.htp.itacademy.car.dao.exception;
 
+@SuppressWarnings("serial")
 public class DaoException extends Exception {
-
-	private static final long serialVersionUID = -8240089860051822427L;
 
 	public DaoException() {
 		super();

@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.domain.entity.dto;
+package by.htp.itacademy.car.domain.dto;
 
 import java.io.Serializable;
 

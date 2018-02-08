@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import by.htp.itacademy.car.annotation.NewInstance;
-import by.htp.itacademy.car.dao.EntityDao;
+import by.htp.itacademy.car.dao.UserDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.dao.impl.UserDaoImpl;
 import by.htp.itacademy.car.domain.entity.Entity;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	private static final String LOG_ERROR = " ERROR: ";
 	
 	@NewInstance(clazz = UserDaoImpl.class)
-	private EntityDao dao;
+	private UserDao userDao;
 	
 	private UserServiceImpl() {}
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 			log.info("User " + userFromDB.getLogin() + " LOGIN - userId: " + userFromDB.getId());
 		} catch (DaoException e) {
 			log.error(LOG_ERROR + e.getMessage());
-			throw new ServiceNoSuchUserException();
+			throw new ServiceNoSuchUserException(e);
 		}
 		return userFromDB;
 	}

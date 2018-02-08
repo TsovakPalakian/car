@@ -1,14 +1,12 @@
 package by.htp.itacademy.car.dao.impl;
 
-import java.util.List;
+import by.htp.itacademy.car.dao.LocationDao;
+import by.htp.itacademy.car.domain.entity.Location;
 
-import by.htp.itacademy.car.dao.EntityDao;
-import by.htp.itacademy.car.dao.exception.DaoException;
-import by.htp.itacademy.car.domain.entity.Entity;
-
-public class LocationDaoImpl implements EntityDao {
+public class LocationDaoImpl extends DaoImpl<Location> implements LocationDao {
 
 	private LocationDaoImpl() {
+		super(Location.class);
 	}
 
 	private static class Singletone {
@@ -19,27 +17,4 @@ public class LocationDaoImpl implements EntityDao {
 		return Singletone.INSTANCE;
 	}
 	
-	@Override
-	public List<Entity> select(Entity entity) throws DaoException {
-		return null;
-	}
-
-	@Override
-	public boolean insert(Entity entity) throws DaoException {
-		return false;
-
-	}
-
-	@Override
-	public boolean update(Entity entity) throws DaoException {
-		return false;
-
-	}
-
-	@Override
-	public boolean delete(Entity entity) throws DaoException {
-		return false;
-
-	}
-
 }

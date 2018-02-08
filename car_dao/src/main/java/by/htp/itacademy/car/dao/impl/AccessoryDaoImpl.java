@@ -2,13 +2,14 @@ package by.htp.itacademy.car.dao.impl;
 
 import java.util.List;
 
-import by.htp.itacademy.car.dao.EntityDao;
+import by.htp.itacademy.car.dao.AccessoryDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
-import by.htp.itacademy.car.domain.entity.Entity;
+import by.htp.itacademy.car.domain.entity.Accessory;
 
-public class AccessoryDaoImpl implements EntityDao {
+public class AccessoryDaoImpl extends DaoImpl<Accessory> implements AccessoryDao {
 
 	private AccessoryDaoImpl() {
+		super(Accessory.class);
 	}
 
 	private static class Singletone {
@@ -18,28 +19,12 @@ public class AccessoryDaoImpl implements EntityDao {
 	public static AccessoryDaoImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
+
 	
 	@Override
-	public List<Entity> select(Entity entity) throws DaoException {
+	public List<Accessory> getAll() throws DaoException {
+		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public boolean insert(Entity entity) throws DaoException {
-		return false;
-
-	}
-
-	@Override
-	public boolean update(Entity entity) throws DaoException {
-		return false;
-
-	}
-
-	@Override
-	public boolean delete(Entity entity) throws DaoException {
-		return false;
-
 	}
 
 }
