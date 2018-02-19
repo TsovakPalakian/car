@@ -18,9 +18,9 @@ import static by.htp.itacademy.car.web.util.Parameter.*;
 
 @Log4j
 @SuppressWarnings("serial")
-public class Controller extends HttpServlet {
+public class UserController extends HttpServlet {
 
-	public Controller() {}
+	public UserController() {}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
