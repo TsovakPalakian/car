@@ -20,9 +20,8 @@ public class DevLog {
 			return;
 		}
 
-		// Make sure the path exists.
 		new File(logFile).getParentFile().mkdirs();
-		//
+
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(logFile, true);
@@ -91,9 +90,5 @@ public class DevLog {
 			}
 		}
 		return -1;
-	}
-	
-	private String currentClass() {
-		return this.getClass().getName();
 	}
 }
