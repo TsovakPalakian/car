@@ -8,9 +8,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import by.htp.itacademy.car.web.encryption.Decoder;
-
-
 @SuppressWarnings("serial")
 public final class OutputCookieDataTag extends TagSupport implements DynamicAttributes {
 	
@@ -19,7 +16,7 @@ public final class OutputCookieDataTag extends TagSupport implements DynamicAttr
 	private String value;
 	private HttpServletRequest request;
 	
-	private Decoder decoder = new Decoder();
+//	private Decoder decoder = new Decoder();
 	
 	@Override
 	public void setDynamicAttribute(String arg0, String arg1, Object arg2) throws JspException {
@@ -51,7 +48,7 @@ public final class OutputCookieDataTag extends TagSupport implements DynamicAttr
     				value = cookies[0].getValue();
     			}
     			else if(password != null && password.length() > 7) {
-    				value = decoder.decrypt(cookies[1].getValue());
+//    				value = decoder.decrypt(cookies[1].getValue());
     			}
     		}
     		if(value != null) {
