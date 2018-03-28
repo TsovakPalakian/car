@@ -2,8 +2,8 @@ package framework.classcore.helper;
 
 import java.util.List;
 
+import framework.FrameworkConstant;
 import framework.classcore.PageScanner;
-import framework.util.FrameworkConstant;
 import framework.webcore.util.InstanceFactory;
 
 public class PageHelper {

@@ -3,8 +3,8 @@ package framework.classcore.template;
 import java.util.ArrayList;
 import java.util.List;
 
+import static framework.FrameworkConstant.*;
 import framework.util.ClassUtil;
-import framework.util.FrameworkConstant;
 import framework.webcore.DataContext;
 
 public abstract class ClassTemplate extends Template {
@@ -17,14 +17,18 @@ public abstract class ClassTemplate extends Template {
 	@Override
 	public <T> List<T> getFileList() {
 		List<Class<?>> classList = new ArrayList<>();
-		searchResourceFiles(DataContext.getServletContext(), FrameworkConstant.CLASSES_PACKAGE, classList);
+		searchFiles(DataContext.getServletContext(), WEB_INF_CLASSES, classList);
+		searchClassFiles(DataContext.getServletContext(), classList);
 		return (List<T>) classList;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected <T> void doAddFile(List<T> fileList, String fileName) {
-		fileName = fileName.replaceAll(FrameworkConstant.CLASSES_PACKAGE, "by.").replaceAll(".class", "").replaceAll("/", ".");
+		if (fileName.startsWith(WEB_INF_CLASSES)) {
+			fileName = fileName.replaceAll(WEB_INF_CLASSES, EMPTY_STRING);
+		}
+		fileName = fileName.replaceAll(CLASS_PREFIX, EMPTY_STRING).replaceAll(SLASH, DOT);
 		Class<?> clzz = ClassUtil.loadClass(fileName);
 		if (checkAddClass(clzz)) {
 			fileList.add((T) clzz);

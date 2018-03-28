@@ -2,7 +2,9 @@ package by.htp.itacademy.car.dao.impl;
 
 import by.htp.itacademy.car.dao.RentedCarDao;
 import by.htp.itacademy.car.domain.entity.RentedCar;
+import framework.webcore.annotation.initialization.Service;
 
+@Service
 public class RentedCarDaoImpl extends DaoImpl<RentedCar> implements RentedCarDao {
 
 	private RentedCarDaoImpl() {

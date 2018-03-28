@@ -2,7 +2,9 @@ package by.htp.itacademy.car.dao.impl;
 
 import by.htp.itacademy.car.dao.UserDao;
 import by.htp.itacademy.car.domain.entity.User;
+import framework.webcore.annotation.initialization.Service;
 
+@Service
 public class UserDaoImpl extends DaoImpl<User> implements UserDao {
 
 	private UserDaoImpl() {
@@ -16,5 +18,4 @@ public class UserDaoImpl extends DaoImpl<User> implements UserDao {
 	public static UserDaoImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
-	
 }

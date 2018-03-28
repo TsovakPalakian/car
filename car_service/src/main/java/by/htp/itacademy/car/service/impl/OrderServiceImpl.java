@@ -2,7 +2,9 @@ package by.htp.itacademy.car.service.impl;
 
 import by.htp.itacademy.car.service.OrderService;
 import by.htp.itacademy.car.service.exception.ServiceException;
+import framework.webcore.annotation.initialization.Service;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
 	private OrderServiceImpl() {

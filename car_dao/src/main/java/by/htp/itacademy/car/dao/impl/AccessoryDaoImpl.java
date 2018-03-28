@@ -5,7 +5,9 @@ import java.util.List;
 import by.htp.itacademy.car.dao.AccessoryDao;
 import by.htp.itacademy.car.dao.exception.DaoException;
 import by.htp.itacademy.car.domain.entity.Accessory;
+import framework.webcore.annotation.initialization.Service;
 
+@Service
 public class AccessoryDaoImpl extends DaoImpl<Accessory> implements AccessoryDao {
 
 	private AccessoryDaoImpl() {

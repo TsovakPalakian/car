@@ -23,6 +23,10 @@ public class View<T> {
         this(path, null, null, httpStatus);
     }
     
+    public View(HttpStatus httpStatus) {
+        this(null, null, null, httpStatus);
+    }
+    
     public View(T body) {
     	this(null, body, null, null);
     }

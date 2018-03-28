@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.connector;
+package framework.connector;
 
 import java.sql.Connection;
 

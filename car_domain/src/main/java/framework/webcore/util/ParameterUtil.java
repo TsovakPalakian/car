@@ -3,10 +3,13 @@ package framework.webcore.util;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +20,8 @@ import framework.webcore.annotation.controller.parameter.ReqBody;
 import framework.webcore.annotation.controller.parameter.ReqParam;
 import framework.webcore.bean.Handler;
 import framework.webcore.bean.Params;
+import framework.webcore.exception.IllegalParameterException;
+import framework.webcore.exception.ValidationException;
 
 /**
  * @author Tsovak Palakian
@@ -24,7 +29,10 @@ import framework.webcore.bean.Params;
  */
 public class ParameterUtil {
 
-	public static List<Object> createPathParamList(HttpServletRequest request, Method actionMethod, Handler handler) {
+	public static List<Object> createPathParamList(HttpServletRequest request, Method actionMethod, Handler handler) 
+			throws InvalidKeyException, SecurityException, ValidationException, IllegalArgumentException, 
+			IllegalAccessException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalParameterException {
+		
 		List<Object> paramList = new ArrayList<Object>();
 
 		Params paramsHelper = new Params(actionMethod);
@@ -51,22 +59,18 @@ public class ParameterUtil {
 				if (annot != null) {
 					ReqParam reqParam = (ReqParam) annot;
 					String requestParameterValue = request.getParameter(reqParam.value());
-					try {
-						if (ObjectUtils.isNotEmptyString(requestParameterValue)) {
-							paramList.add(FacadeCast.getCastChain().getValue(parameter.getType(), requestParameterValue));
-						} else {
-							paramList.add(FacadeCast.getCastChain().getValue(parameter.getType(), reqParam.defaultValue()));
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
+					if (ObjectUtils.isNotEmptyString(requestParameterValue)) {
+						paramList.add(FacadeCast.getCastChain().getValue(parameter.getType(), requestParameterValue));
+					} else {
+						paramList.add(FacadeCast.getCastChain().getValue(parameter.getType(), reqParam.defaultValue()));
 					}
 				}
 			}
 		}
 	}
 
-	private static void pathVariableAnnotation(Params paramsHelper, int ordinal, Handler handler,
-			Parameter parameter, List<Object> paramList) {
+	private static void pathVariableAnnotation(Params paramsHelper, int ordinal, Handler handler, Parameter parameter,
+			List<Object> paramList) {
 		if (paramsHelper.containAnnotation(parameter, PathVariable.class)) {
 			if (parameter.isAnnotationPresent(PathVariable.class)) {
 				String pathVariableValue = handler.getRequestMatcher().group(ordinal);
@@ -79,19 +83,17 @@ public class ParameterUtil {
 	}
 
 	private static void reqBodyAnnotation(Params paramsHelper, Parameter parameter, HttpServletRequest request,
-			List<Object> paramList) {
-		
+			List<Object> paramList)
+			throws InvalidKeyException, SecurityException, ValidationException, IllegalArgumentException,
+			IllegalAccessException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalParameterException {
+
 		if (paramsHelper.containAnnotation(parameter, ReqBody.class)) {
 			if (parameter.isAnnotationPresent(ReqBody.class)) {
 				String jsonString = JSONUtil.getJsonString(request);
 				Object object = JSONUtil.fromJSON(jsonString, parameter.getType());
 				Map<String, String> objectRegex = ObjectValidatorUtil.mapRegex(object);
 				if (ObjectUtils.isNotNullObject(object) && ObjectUtils.isNotEmptyMap(objectRegex)) {
-					try {
-						ObjectValidatorUtil.validator(object, objectRegex);
-					} catch (Exception e) {
-						
-					}
+					ObjectValidatorUtil.validator(object, objectRegex);
 				}
 				paramList.add(object);
 			}

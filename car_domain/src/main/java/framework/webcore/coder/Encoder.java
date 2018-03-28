@@ -1,9 +1,9 @@
 package framework.webcore.coder;
 
+import static framework.FrameworkConstant.*;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
-
-import static framework.util.FrameworkConstant.*;
 
 public class Encoder extends CipherMachine {
 	private byte[] dataArray;

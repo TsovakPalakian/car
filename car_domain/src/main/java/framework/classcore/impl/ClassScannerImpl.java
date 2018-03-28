@@ -8,6 +8,8 @@ import framework.classcore.template.AnnotationClassTemplate;
 import framework.classcore.template.ClassTemplate;
 import framework.classcore.template.SuperClassTemplate;
 
+import static framework.FrameworkConstant.*;
+
 public class ClassScannerImpl implements ClassScanner {
 
 	@Override
@@ -16,7 +18,7 @@ public class ClassScannerImpl implements ClassScanner {
             @Override
             protected boolean checkAddClass(Class<?> clz) {
                 String clzName = clz.getName();
-                return clzName.startsWith("by.htp.itacademy");
+                return clzName.startsWith(PACKAGE_CLASSES);
             }
         }.getFileList();
 	}

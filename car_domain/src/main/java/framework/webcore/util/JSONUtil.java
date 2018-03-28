@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import framework.util.FrameworkConstant;
+import framework.FrameworkConstant;
 
 public class JSONUtil {
 

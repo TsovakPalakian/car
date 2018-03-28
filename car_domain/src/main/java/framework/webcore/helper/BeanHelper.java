@@ -1,10 +1,12 @@
 package framework.webcore.helper;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import framework.FrameworkConstant;
 import framework.classcore.helper.ClassHelper;
 import framework.util.ObjectUtils;
 import framework.webcore.annotation.controller.Controller;
@@ -24,12 +26,13 @@ public class BeanHelper {
 			if (ObjectUtils.isNotEmptyCollection(basePackageClassList)) {
 				for (int i = 0; i < basePackageClassList.size(); i++) {
 					Class<?> cls = basePackageClassList.get(i);
-					if (cls.isAnnotationPresent(Controller.class)
-						|| cls.isAnnotationPresent(Service.class)
-						|| cls.isAnnotationPresent(Component.class)) {
-						
+					if (cls.isAnnotationPresent(Controller.class) || cls.isAnnotationPresent(Service.class)
+							|| cls.isAnnotationPresent(Component.class)) {
+
 						beanClassList.add(cls);
-						Object instance = cls.newInstance();
+
+						Object instance = initInstance(cls);
+
 						beanMap.put(cls, instance);
 					}
 				}
@@ -38,16 +41,28 @@ public class BeanHelper {
 			throw new InitializationException("Class not found!", e);
 		}
 	}
-	
-	public static Map<Class<?>, Object> getBeanMap() {
-        return beanMap;
-    }
 
-    @SuppressWarnings("unchecked")
+	public static Map<Class<?>, Object> getBeanMap() {
+		return beanMap;
+	}
+
+	@SuppressWarnings("unchecked")
 	public static <T> T getBean(Class<T> cls) {
-        if (!beanMap.containsKey(cls)) {
-            throw new RuntimeException("The class not contains annotation Controller.");
-        }
-        return (T) beanMap.get(cls);
-    }
+		if (!beanMap.containsKey(cls)) {
+			throw new RuntimeException("The class not contains annotation Controller.");
+		}
+		return (T) beanMap.get(cls);
+	}
+
+	private static Object initInstance(Class<?> cls) throws Exception {
+		Object instance = null;
+		Class<?>[] parameters = null;
+		try {
+			Method method = cls.getMethod(FrameworkConstant.METHOD_NAME, parameters);
+			instance = method.invoke(null, null);
+		} catch (NoSuchMethodException e) {
+			instance = cls.newInstance();
+		}
+		return instance;
+	}
 }

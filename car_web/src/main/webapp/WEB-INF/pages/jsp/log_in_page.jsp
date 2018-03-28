@@ -13,11 +13,11 @@
 <body>
 	<div>
 		<div id="wrapper">
-			<%@include file="/WEB-INF/page/jspf/header_log_in.jspf" %>
+			<%@include file="/WEB-INF/pages/jspf/header_log_in.jspf" %>
 			<hr>
 			
 			<div class="menu_center">
-				<%@include file="/WEB-INF/page/jspf/menu.jspf" %>
+				<%@include file="/WEB-INF/pages/jspf/menu.jspf" %>
 			</div>
 			
 			<hr>
@@ -25,7 +25,7 @@
 				<h2>Please, fill in the form to log in!</h2>
 			</div>
 			
-			<%@include file="/WEB-INF/page/jspf/msg.jspf" %>
+			<%@include file="/WEB-INF/pages/jspf/msg.jspf" %>
 			
 			<div id="login_form">
 				<form action="${pageContext.request.contextPath}/Controller"
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		<div id="foot">
-			<jsp:include page="/WEB-INF/page/jspf/footer.jspf" />
+			<jsp:include page="/WEB-INF/pages/jspf/footer.jspf" />
 		</div>
 	</div>
 </body>

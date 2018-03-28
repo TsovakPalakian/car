@@ -2,7 +2,9 @@ package by.htp.itacademy.car.service.impl;
 
 import by.htp.itacademy.car.service.RentedCarService;
 import by.htp.itacademy.car.service.exception.ServiceException;
+import framework.webcore.annotation.initialization.Service;
 
+@Service
 public class RentedCarServiceImpl implements RentedCarService {
 
 	private RentedCarServiceImpl() {

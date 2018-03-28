@@ -8,12 +8,16 @@ import by.htp.itacademy.car.domain.entity.User;
 import by.htp.itacademy.car.service.UserService;
 import by.htp.itacademy.car.service.exception.ServiceException;
 import by.htp.itacademy.car.service.exception.ServiceNoSuchUserException;
+import framework.webcore.annotation.initialization.AutoInit;
+import framework.webcore.annotation.initialization.Service;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@Service
 public class UserServiceImpl implements UserService {
 	private static final String LOG_ERROR = " ERROR: ";
 	
+	@AutoInit
 	private UserDao userDao;
 	
 	private UserServiceImpl() {}

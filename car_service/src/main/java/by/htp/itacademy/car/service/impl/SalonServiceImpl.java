@@ -2,7 +2,9 @@ package by.htp.itacademy.car.service.impl;
 
 import by.htp.itacademy.car.service.SalonService;
 import by.htp.itacademy.car.service.exception.ServiceException;
+import framework.webcore.annotation.initialization.Service;
 
+@Service
 public class SalonServiceImpl implements SalonService {
 
 	private SalonServiceImpl() {

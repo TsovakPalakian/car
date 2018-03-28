@@ -4,8 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Index</title>
+	<link rel="stylesheet" type="text/css" href="index.css"    >
 </head>
 <body>
-	<jsp:forward page="/WEB-INF/page/jsp/home_page.jsp" />
+	<p>Palakian</p>
 </body>
 </html>

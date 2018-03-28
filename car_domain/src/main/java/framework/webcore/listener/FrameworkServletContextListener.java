@@ -9,16 +9,17 @@ import javax.servlet.ServletRegistration;
 import javax.servlet.annotation.WebListener;
 
 import framework.classcore.helper.PageHelper;
-import framework.util.FrameworkConstant;
 import framework.util.ObjectUtils;
 import framework.webcore.DataContext;
 import framework.webcore.helper.HelperLoader;
+
+import static framework.FrameworkConstant.*;
 
 @WebListener
 public class FrameworkServletContextListener implements ServletContextListener {
 
 	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
+	public void contextInitialized(ServletContextEvent servletContextEvent) {	
 		ServletContext servletContext = servletContextEvent.getServletContext();
 		DataContext.getInstance(servletContext);
 
@@ -42,7 +43,7 @@ public class FrameworkServletContextListener implements ServletContextListener {
 	}
 
 	private void registerJspServlet(ServletContext servletContext, List<String> pages) {
-		ServletRegistration jspServlet = servletContext.getServletRegistration("jsp");
+		ServletRegistration jspServlet = servletContext.getServletRegistration(SERVLET_REGISTRATION_JSP);
 		for (String page : pages) {
 			if (ObjectUtils.isNotEmptyString(page)) {
 				jspServlet.addMapping(page);
@@ -51,8 +52,8 @@ public class FrameworkServletContextListener implements ServletContextListener {
 	}
 
 	private void registerDefaultServlet(ServletContext servletContext) {
-		ServletRegistration defaultServlet = servletContext.getServletRegistration("default");
-		String resourcePath = FrameworkConstant.PATH_PAGES;
+		ServletRegistration defaultServlet = servletContext.getServletRegistration(SERVLET_REGISTRATION_DEFAULT);
+		String resourcePath = PATH_PAGES;
 		defaultServlet.addMapping(resourcePath);
 	}
 

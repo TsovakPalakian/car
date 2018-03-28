@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import framework.util.FrameworkConstant;
+import framework.FrameworkConstant;
 import framework.util.ObjectUtils;
 import framework.webcore.bean.View;
 import framework.webcore.http.HttpStatus;

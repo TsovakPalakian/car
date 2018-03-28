@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="${pageContext.request.contextPath}/css/catalogue.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/animation_page.css" rel="stylesheet" type="text/css" />
+<link href="web/css/catalogue.css" rel="stylesheet" type="text/css" />
+<link href="web/css/menu.css" rel="stylesheet" type="text/css" />
+<link href="web/css/footer.css" rel="stylesheet" type="text/css" />
+<link href="web/css/slider.css" rel="stylesheet" type="text/css" />
+<link href="web/css/animation_page.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">

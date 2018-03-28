@@ -1,6 +1,6 @@
 package framework.webcore.util;
 
-import static framework.util.FrameworkConstant.*;
+import static framework.FrameworkConstant.*;
 
 import java.io.IOException;
 

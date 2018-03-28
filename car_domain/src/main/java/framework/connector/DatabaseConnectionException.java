@@ -1,4 +1,4 @@
-package by.htp.itacademy.car.connector;
+package framework.connector;
 
 public class DatabaseConnectionException extends Exception {
 

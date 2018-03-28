@@ -1,5 +1,7 @@
 package framework.webcore.helper;
 
+import static framework.FrameworkConstant.*;
+
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +19,6 @@ import framework.webcore.bean.Handler;
 import framework.webcore.bean.Requester;
 import framework.webcore.exception.InitializationException;
 import framework.webcore.http.HttpMethod;
-
-import static framework.util.FrameworkConstant.*;
 
 public class ActionHelper {
 	

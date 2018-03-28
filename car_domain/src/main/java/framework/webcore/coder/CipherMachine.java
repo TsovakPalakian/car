@@ -5,7 +5,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-import static framework.util.FrameworkConstant.*;
+import static framework.FrameworkConstant.*;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

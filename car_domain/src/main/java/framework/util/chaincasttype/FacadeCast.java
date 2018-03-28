@@ -24,7 +24,7 @@ public class FacadeCast {
 		CAST_CHAINS.add(DOUBLE_CAST);
 		CAST_CHAINS.add(BYTE_CAST);
 	}
-	public static Cast getCastChain() throws Exception {
+	public static Cast getCastChain() {
 		
 		for (int i = 0; i < CAST_CHAINS.size() - LAST_PARAMETER_INDEX; ++i) {
 			CAST_CHAINS.get(i).setNextChain(CAST_CHAINS.get(i + LAST_PARAMETER_INDEX));
